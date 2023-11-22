@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import wordPairsData from './wordPairs.json';
 import Modal from './components/modal';
 import { motion } from 'framer-motion';
@@ -7,6 +7,7 @@ import { fadeIn } from './utils/motion';
 export interface WordPair {
   verb: string;
   translation: string;
+  group?: string;
 }
 
 const getRandomPairToLearn = (wordPairs: WordPair[]): WordPair => {
@@ -18,8 +19,9 @@ const Learning: React.FC = () => {
   const [wordPairs, setWordPairs] = useState<WordPair[]>(wordPairsData);
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
   const [isVerb, setIsVerb] = useState<boolean>(Math.random() < 0.5);
-  const [question, setQuestion] = useState<string>(getRandomPairToLearn(wordPairs)[isVerb ? 'verb' : 'translation']);
-  const [answer, setAnswer] = useState<string>(getRandomPairToLearn(wordPairs)[isVerb ? 'translation' : 'verb']);
+  const pair = getRandomPairToLearn(wordPairs);
+  const [question, setQuestion] = useState<string>(pair[isVerb ? 'verb' : 'translation']);
+  const [answer, setAnswer] = useState<string>(pair[isVerb ? 'translation' : 'verb']);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [newItem, setNewItem] = useState<WordPair>({ verb: '', translation: '' });
 
@@ -33,11 +35,6 @@ const Learning: React.FC = () => {
     const pair = getRandomPairToLearn(wordPairs);
     setQuestion(pair[isVerb ? 'verb' : 'translation']);
     setAnswer(pair[isVerb ? 'translation' : 'verb']);
-  };
-
-
-  const handleAddWord = (newWordPair: WordPair): void => {
-    setWordPairs([...wordPairs, newWordPair]);
   };
 
   return (

@@ -1,22 +1,53 @@
 [
     {
         "verb": "Trouver",
-        "translation": "znaleźć"
+        "translation": "Znaleźć",
+        "group": "1 regular"
     },
     {
         "verb": "Finir",
-        "translation": "kończyć"
+        "translation": "Kończyć",
+        "group": "2 regular"
     },
     {
         "verb": "Choisir",
-        "translation": "wybierać"
+        "translation": "Wybierać",
+        "group": "2 regular"
     },
     {
-        "verb": "Reflechir",
-        "translation": "zastanawiać się"
+        "verb": "Réfléchir",
+        "translation": "Zastanawiać się",
+        "group": "2 regular"
+
     },
     {
-        "verb": "Obeir",
-        "translation": "słuchać się"
+        "verb": "Obéir",
+        "translation": "Słuchać się",
+        "group": "2 regular"
+    },
+    {
+        "verb": "Appeler",
+        "translation": "Nazywać",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Payer",
+        "translation": "Płacić",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Envoyer",
+        "translation": "Wysyłać",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Essayer",
+        "translation": "Przymierzać (ubranie)",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Essayer de",
+        "translation": "Próbować",
+        "group": "1 irregular"
     }
 ]
