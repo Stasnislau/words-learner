@@ -18,7 +18,6 @@
         "verb": "Réfléchir",
         "translation": "Zastanawiać się",
         "group": "2 regular"
-
     },
     {
         "verb": "Obéir",
@@ -48,6 +47,31 @@
     {
         "verb": "Essayer de",
         "translation": "Próbować",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Manger",
+        "translation": "Jeść",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Nager",
+        "translation": "Pływać",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Changer",
+        "translation": "Zmieniać",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Ranger",
+        "translation": "Porządkować/układać",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Commencer",
+        "translation": "Zaczynać",
         "group": "1 irregular"
     }
 ]
