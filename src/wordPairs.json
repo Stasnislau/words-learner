@@ -73,5 +73,32 @@
         "verb": "Commencer",
         "translation": "Zaczynać",
         "group": "1 irregular"
+    },
+    {
+        "verb": "Ouvrir",
+        "translation": "Otwierać",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Souffrir",
+        "translation": "Cierpieć",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Offrir",
+        "translation": "Oferować/ podarować",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Couvrir",
+        "translation": "Przykrywać",
+        "group": "1 irregular"
+    },
+    {
+        "verb": "Decouvrir",
+        "translation": "Odkrywać",
+        "group": "1 irregular"
     }
+
+
 ]
