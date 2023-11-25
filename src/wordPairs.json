@@ -98,6 +98,71 @@
         "verb": "Decouvrir",
         "translation": "Odkrywać",
         "group": "1 irregular"
+    },
+    {
+        "verb:": "Courir",
+        "translation": "Biegać",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "Prendre",
+        "translation": "Brać",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "Apprendre",
+        "translation": "Uczyć się",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "Comprendre",
+        "translation": "Rozumieć",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "Surprendre",
+        "translation": "Zaskakiwać",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "Vendre",
+        "translation": "Sprzedawać",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "Partir",
+        "translation": "Wyjeżdżać",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "Sortir",
+        "translation": "Wychodzić",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "Mentir",
+        "translation": "Kłamać",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "Dormir",
+        "translation": "Spać",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "Se sentir",
+        "translation": "Czuć się",
+        "group": "3 irregular"
+    },
+    {
+        "verb": "faire",
+        "translation": "robić",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "dire",
+        "translation": "mówić",
+        "group": "3 irregular cikawostki"
     }
 
 
