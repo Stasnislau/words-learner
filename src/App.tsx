@@ -1,21 +1,25 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { HomePage } from "./pages"
+import { HomePage, GamePage } from "./pages"
 
 const App = () => {
   const availableRoutes = [
     {
       path: '/',
       component: HomePage,
-    }
+    },
+    {
+      path: '/game',
+      component: GamePage,
+    },
   ]
   return (
     <BrowserRouter>
-      <div className="w-full h-full">
+      <div className="w-full h-full px-10">
         <Routes >
           {availableRoutes.map(({ path, component }) => (
             <Route key={path} path={path} Component={component} />
           ))}
-          <Route path="*" element={<h1>404</h1>} />
+          <Route path="*" element={<h1 className="flex justify-center text-7xl text-red-500">404</h1>} />
         </Routes>
       </div>
 
