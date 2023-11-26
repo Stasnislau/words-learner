@@ -163,7 +163,65 @@
         "verb": "dire",
         "translation": "mówić",
         "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "boire",
+        "translation": "pić",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "devoir",
+        "translation": "musieć",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "ventir",
+        "translation": "przychodzić",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "tenir",
+        "translation": "trzymać",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "voir",
+        "translation": "widzieć",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "pouvoir",
+        "translation": "móc",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "savoir",
+        "translation": "wiedzieć",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "recevoir",
+        "translation": "otrzymywać",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "lire",
+        "translation": "czytać",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "écrire",
+        "translation": "pisać",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "connaître",
+        "translation": "znać",
+        "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "vouloir",
+        "translation": "chcieć",
+        "group": "3 irregular cikawostki"
     }
-
-
 ]
