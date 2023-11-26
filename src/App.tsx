@@ -14,7 +14,7 @@ const App = () => {
   ]
   return (
     <BrowserRouter>
-      <div className="w-full h-full px-10">
+      <div className="w-full h-full">
         <Routes >
           {availableRoutes.map(({ path, component }) => (
             <Route key={path} path={path} Component={component} />
