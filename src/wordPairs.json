@@ -100,6 +100,16 @@
         "group": "1 irregular"
     },
     {
+        "verb": "détendre",
+        "translation": "odprężać",
+        "group": "3 regular"
+    },
+    {
+        "verb": "Attendre",
+        "translation": "Czekać",
+        "group": "3 regular"
+    },
+    {
         "verb": "Courir",
         "translation": "Biegać",
         "group": "3 irregular"

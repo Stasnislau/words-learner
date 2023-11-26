@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import wordPairsData from '../wordPairs.json';
 import Modal from '../components/modal';
 import { motion } from 'framer-motion';
@@ -10,15 +10,17 @@ export interface WordPair {
     group?: string;
 }
 
-const getRandomPairToLearn = (wordPairs: WordPair[]): WordPair => {
-    const randomIndex = Math.floor(Math.random() * wordPairs.length);
-    return wordPairs[randomIndex]
-};
+// const getRandomPairToLearn = (wordPairs: WordPair[]): WordPair => {
+//     const randomIndex = Math.floor(Math.random() * wordPairs.length);
+//     return wordPairs[randomIndex]
+// };
 
 const GamePage = () => {
     const [wordPairs, setWordPairs] = useState<WordPair[]>(wordPairsData);
+    const counter = useRef<number>(0);
     const [isRevealed, setIsRevealed] = useState<boolean>(false);
-    const pair = getRandomPairToLearn(wordPairs);
+    // const pair = getRandomPairToLearn(wordPairs);
+    const pair = wordPairs[counter.current];
     const [question, setQuestion] = useState<string>(pair['translation']);
     const [answer, setAnswer] = useState<string>(pair['verb']);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -27,10 +29,14 @@ const GamePage = () => {
     const handleReveal = (): void => {
         setIsRevealed(true);
     };
-    
+
     const handleNext = (): void => {
         setIsRevealed(false);
-        const pair = getRandomPairToLearn(wordPairs);
+        // const pair = getRandomPairToLearn(wordPairs);
+        counter.current++;
+        if (counter.current === wordPairs.length) {
+            counter.current = 0;
+        }
         setQuestion(pair['translation']);
         setAnswer(pair['verb']);
     };
