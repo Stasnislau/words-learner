@@ -3,6 +3,7 @@ import wordPairsData from '../wordPairs.json';
 import Modal from '../components/modal';
 import { motion } from 'framer-motion';
 import styles from '../styles';
+import useTimeout from '../hooks/useTimeout';
 
 export interface WordPair {
     verb: string;
@@ -17,7 +18,7 @@ export interface WordPair {
 
 const GamePage = () => {
     const [wordPairs, setWordPairs] = useState<WordPair[]>(wordPairsData);
-    const counter = useRef<number>(0);
+    const counter = useRef<number>(wordPairs.length - 1);
     const [isRevealed, setIsRevealed] = useState<boolean>(false);
     // const pair = getRandomPairToLearn(wordPairs);
     const pair = wordPairs[counter.current];
@@ -25,6 +26,8 @@ const GamePage = () => {
     const [answer, setAnswer] = useState<string>(pair['verb']);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [newItem, setNewItem] = useState<WordPair>({ verb: '', translation: '' });
+    const time = useTimeout(5, () => setIsRevealed(true));
+    const [correctAnswers, setCorrectAnswers] = useState<number>(0);
 
     const handleReveal = (): void => {
         setIsRevealed(true);
@@ -33,10 +36,11 @@ const GamePage = () => {
     const handleNext = (): void => {
         setIsRevealed(false);
         // const pair = getRandomPairToLearn(wordPairs);
-        counter.current++;
-        if (counter.current === wordPairs.length) {
-            counter.current = 0;
+        counter.current--;
+        if (counter.current === -1) {
+            counter.current = wordPairs.length - 1;
         }
+        const pair = wordPairs[counter.current];
         setQuestion(pair['translation']);
         setAnswer(pair['verb']);
     };
@@ -44,8 +48,8 @@ const GamePage = () => {
     return (
         <div className="w-full grow ">
             <div className="flex flex-col">
-                <div className='flex flex-col border-white border-2 w-full bg-white'>
-                    <div className="flex flex-row justify-center items-stretch h-20">
+                <div className='flex flex-col w-full justify-center items-center mt-6'>
+                    <div className="flex flex-row w-fit bg-white justify-center h-20 px-20">
                         <p className='font-normal text-lg'>What is the translation of <p className='font-bold text-3xl text-center'>{question}</p></p>
                     </div>
                 </div>
@@ -56,6 +60,14 @@ const GamePage = () => {
                     <button className={styles.yellowButton} onClick={handleNext}>
                         Next
                     </button>
+                </div>
+                <div className='flex flex-1 justify-between align-middle gap-3 p-10'>
+                    <div className='flex flex-row  gap-3 p-4 bg-white shadow-sm rounded-xl'>
+                        <p className='text-5xl font-bold'>{time}</p>
+                    </div>
+                    <div className='flex flex-row  gap-3 p-4 bg-white shadow-sm rounded-xl'>
+                        <p className='text-5xl font-bold'>{correctAnswers}</p>
+                    </div>
                 </div>
                 <div className={` ${!isRevealed ? "hidden" : "absolute"} flex flex-1 top-[50%] left-[45%] flex-row justify-center items-center gap-3 pt-2 bg-white shadow-sm rounded-xl`}>
                     <div
