@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import wordPairsData from '../wordPairs.json';
-import Modal from '../components/modal';
 import { motion } from 'framer-motion';
 import styles from '../styles';
 import useTimeout from '../hooks/useTimeout';
+import MultipleChoice from '../components/multipleChoice';
 
 export interface WordPair {
     verb: string;
@@ -11,39 +11,67 @@ export interface WordPair {
     group?: string;
 }
 
-// const getRandomPairToLearn = (wordPairs: WordPair[]): WordPair => {
-//     const randomIndex = Math.floor(Math.random() * wordPairs.length);
-//     return wordPairs[randomIndex]
-// };
-
 const GamePage = () => {
+    const numberOfQuestions = 10; // TODO: make this a prop read from the URL
     const [wordPairs, setWordPairs] = useState<WordPair[]>(wordPairsData);
     const counter = useRef<number>(wordPairs.length - 1);
-    const [isRevealed, setIsRevealed] = useState<boolean>(false);
-    // const pair = getRandomPairToLearn(wordPairs);
-    const pair = wordPairs[counter.current];
-    const [question, setQuestion] = useState<string>(pair['translation']);
-    const [answer, setAnswer] = useState<string>(pair['verb']);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const [newItem, setNewItem] = useState<WordPair>({ verb: '', translation: '' });
-    const time = useTimeout(5, () => setIsRevealed(true));
+    const [question, setQuestion] = useState<string>("");
+    const [answer, setAnswer] = useState<string>("");
+    const [QuestionsNumber, setQuestionsNumber] = useState<number>(1);
+    const [time, setTimer] = useTimeout(60, false, () => alert('Time is up!'));
     const [correctAnswers, setCorrectAnswers] = useState<number>(0);
+    const [options, setOptions] = useState<string[]>([]);
 
-    const handleReveal = (): void => {
-        setIsRevealed(true);
-    };
+    useEffect(() => {
+        const pair = wordPairs[counter.current];
+        setQuestion(pair['translation']);
+        setAnswer(pair['verb']);
+        const options: string[] = [pair['verb']];
+        while (options.length !== 4) {
+            const randomIndex = Math.floor(Math.random() * wordPairs.length);
+            const randomPair = wordPairs[randomIndex];
+
+            if (randomPair['verb'] !== pair['verb'] && !options.includes(randomPair['verb'])) {
+                options.push(randomPair['verb']);
+            }
+        }
+        setTimer(true);
+        setOptions(options);
+    }, []);
 
     const handleNext = (): void => {
-        setIsRevealed(false);
-        // const pair = getRandomPairToLearn(wordPairs);
         counter.current--;
         if (counter.current === -1) {
             counter.current = wordPairs.length - 1;
         }
+        if (QuestionsNumber === numberOfQuestions) {
+            alert('Game Over!');
+            return;
+        }
+
         const pair = wordPairs[counter.current];
         setQuestion(pair['translation']);
         setAnswer(pair['verb']);
+        const options: string[] = [answer];
+        while (options.length !== 4) {
+            const randomIndex = Math.floor(Math.random() * wordPairs.length);
+            const randomPair = wordPairs[randomIndex];
+            if (randomPair['verb'] !== pair['verb'] && !options.includes(randomPair['verb'])) {
+                options.push(randomPair['verb']);
+            }
+        }
+        setOptions(options);
+        setQuestionsNumber((prev) => prev + 1);
+        setTimer(true);
     };
+
+    const onChoice = (isCorrect: boolean) => {
+        setTimer(false);
+        if (isCorrect) {
+            setCorrectAnswers(correctAnswers + 1);
+        }
+        handleNext();
+    }
 
     return (
         <div className="w-full grow ">
@@ -53,12 +81,9 @@ const GamePage = () => {
                         <p className='font-normal text-lg'>What is the translation of <p className='font-bold text-3xl text-center'>{question}</p></p>
                     </div>
                 </div>
-                <div className="flex flex-0.5 flex-row justify-center items-center gap-3 pt-2">
-                    <button className={styles.greenButton} disabled={isRevealed} onClick={handleReveal}>
-                        Reveal
-                    </button>
-                    <button className={styles.yellowButton} onClick={handleNext}>
-                        Next
+                <div className="flex flex-0.5 flex-row justify-end items-center gap-3 pt-2 px-10">
+                    <button className={styles.grayButton} onClick={handleNext}>
+                        Skip
                     </button>
                 </div>
                 <div className='flex flex-1 justify-between align-middle gap-3 p-10'>
@@ -69,14 +94,8 @@ const GamePage = () => {
                         <p className='text-5xl font-bold'>{correctAnswers}</p>
                     </div>
                 </div>
-                <div className={` ${!isRevealed ? "hidden" : "absolute"} flex flex-1 top-[50%] left-[45%] flex-row justify-center items-center gap-3 pt-2 bg-white shadow-sm rounded-xl`}>
-                    <div
-                        className="flex flex-row justify-center items-center gap-3 p-4 ">
-                        <p className='text-5xl font-bold'>{answer}</p>
-                    </div>
-                </div>
+                <MultipleChoice choices={options} onChoice={onChoice} answer={answer} />
             </div>
-            {isModalOpen && <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} item={newItem} setItem={setNewItem} />}
         </div >
     );
 };
