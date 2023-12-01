@@ -15,8 +15,12 @@ const GamePage = () => {
     const numberOfQuestions = 100; // TODO: make this a prop read from the URL
     const wordPairs = wordPairsData as WordPair[];
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
-    const [QuestionsNumber, setQuestionsNumber] = useState<number>(1);
-    const [time, setTimer] = useTimeout(60, false, () => alert('Time is up!'));
+    const [CurrentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
+    const [time, setTimer] = useTimeout(60, false, () => {
+        alert('Time is up!');
+        isGameOn.current = false;
+    });
+    const isGameOn = useRef<boolean>(true); // make it false on start, add a button to start the game
     const answer = useRef<string>('');
     const question = useRef<string>('');
     const [options, setOptions] = useState<string[]>([]);
@@ -36,17 +40,24 @@ const GamePage = () => {
         }
         setOptions(localOptions.sort(() => Math.random() - 0.5)); // shuffle the options
         setTimer(true);
-    }, [QuestionsNumber]);
+    }, [CurrentQuestionNumber]);
 
     const handleNext = () => {
-        if (QuestionsNumber === numberOfQuestions) {
-            alert('Game over!');
+        if (!isGameOn.current) {
             return;
         }
-        setQuestionsNumber(QuestionsNumber + 1);
+        if (CurrentQuestionNumber === numberOfQuestions) {
+            alert('Game over!'); // TODO: show the score and stuff
+            isGameOn.current = false;
+            return;
+        }
+        setCurrentQuestionNumber(prev => prev + 1);
     };
 
     const onChoice = (isCorrect: boolean) => {
+        if (!isGameOn.current) {
+            return;
+        }
         if (isCorrect) {
             setNumberOfCorrectAnswers(numberOfCorrectAnswers + 1);
         }
@@ -55,8 +66,8 @@ const GamePage = () => {
     };
 
     return (
-        <div className="w-full grow ">
-            <div className="flex flex-col">
+        <div className="w-full h-screen flex flex-col">
+            <div className="flex flex-col grow">
                 <div className='flex flex-col w-full justify-center items-center mt-6'>
                     <div className="flex flex-row w-fit bg-white justify-center h-20 px-20">
                         <p className='font-normal text-lg'>What is the translation of <p className='font-bold text-3xl text-center'>{question.current}</p></p>
@@ -67,15 +78,15 @@ const GamePage = () => {
                         Skip
                     </button>
                 </div>
-                <div className='flex flex-1 justify-between align-middle gap-3 p-10'>
-                    <div className='flex flex-row  gap-3 p-4 bg-white shadow-sm rounded-xl'>
+                <div className='flex justify-between align-middle gap-3 p-10'>
+                    <div className='flex flex-row gap-3 p-4 bg-white shadow-sm rounded-xl'>
                         <p className='text-5xl font-bold'>{time}</p>
                     </div>
                     <div className='flex flex-row  gap-3 p-4 bg-white shadow-sm rounded-xl'>
                         <p className='text-5xl font-bold'>{numberOfCorrectAnswers}</p>
                     </div>
                 </div>
-                <div className='flex grow p-10'>
+                <div className='flex grow p-10 items-center'>
                     <MultipleChoice choices={options} onChoice={onChoice} answer={answer.current} />
                 </div>
             </div>
