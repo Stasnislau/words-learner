@@ -22,14 +22,14 @@ const GamePage = () => {
     const [options, setOptions] = useState<string[]>([]);
 
     useEffect(() => {
-        const pair = wordPairs[Math.floor(Math.random() * (wordPairs.length-1))];
+        const pair = wordPairs[Math.floor(Math.random() * (wordPairs.length - 1))];
         console.log(pair)
         question.current = pair.verb;
         answer.current = pair.translation;
 
         const localOptions: string[] = [answer.current];
         while (localOptions.length < 4) {
-            const randomPair = wordPairs[Math.floor(Math.random() * (wordPairs.length-1))];
+            const randomPair = wordPairs[Math.floor(Math.random() * (wordPairs.length - 1))];
             if (!localOptions.includes(randomPair.translation)) {
                 localOptions.push(randomPair.translation);
             }
@@ -75,8 +75,11 @@ const GamePage = () => {
                         <p className='text-5xl font-bold'>{numberOfCorrectAnswers}</p>
                     </div>
                 </div>
-                <MultipleChoice choices={options} onChoice={onChoice} answer={answer.current} />
+                <div className='flex grow p-10'>
+                    <MultipleChoice choices={options} onChoice={onChoice} answer={answer.current} />
+                </div>
             </div>
+
         </div >
     );
 };

@@ -10,13 +10,14 @@ const MultipleChoice = ({ choices, onChoice, answer  }: multipleChoiceProps) => 
             onChoice(false);
         }
     }
+    const colors = ['FF0000', '00FF00', '0000FF', 'FFFF00', '00FFFF', 'FF00FF'];
     return (
-        <div className="flex flex-wrap flex-col shadow-sm w-full">
-            <div className="flex flex-row justify-center items-center gap-3">
-                {choices.map((choice) => {
-                    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        <div className="flex shadow-sm w-full">
+            <div className="flex flex-wrap justify-center items-center gap-3 w-full">
+                {choices.map((choice, index) => {
+                    const color = colors[index];
                     return (
-                        <ChoiceTile choice={choice} color={randomColor} onChoice={handleChoice} />
+                        <ChoiceTile key={index} choice={choice} color={color} onChoice={handleChoice} />
                     )
                 })}
 

@@ -4,9 +4,8 @@ const ChoiceTile = ({
     color,
     choice,
     onChoice }: choiceTileProps) => {
-
     return (
-        <div className={`flex flex-col bg-[${color}]`}>
+        <div className={`flex flex-col bg-[#${color}] md:w-[45%] w-full`}>
             <button className="flex flex-col bg-white shadow-sm rounded-xl p-4" onClick={() => onChoice(choice)}>
                 <p className="text-2xl font-bold">{choice}</p>
             </button>
