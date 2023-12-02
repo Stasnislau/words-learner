@@ -69,8 +69,10 @@ const GamePage = () => {
         <div className="w-full h-screen flex flex-col">
             <div className="flex flex-col grow">
                 <div className='flex flex-col w-full justify-center items-center mt-6'>
-                    <div className="flex flex-row w-fit bg-white justify-center h-20 px-20">
-                        <p className='font-normal text-lg'>What is the translation of <p className='font-bold text-3xl text-center'>{question.current}</p></p>
+                    <div className="flex flex-row w-fit bg-white justify-center  px-20 py-4">
+                        <p className='font-normal lg:text-lg text-md'>What is the translation of
+                            <p className='font-bold lg:text-3xl text-xl text-center'>{question.current}</p>
+                        </p>
                     </div>
                 </div>
                 <div className="flex flex-0.5 flex-row justify-end items-center gap-3 pt-2 px-10">
@@ -86,7 +88,7 @@ const GamePage = () => {
                         <p className='text-5xl font-bold'>{numberOfCorrectAnswers}</p>
                     </div>
                 </div>
-                <div className='flex grow p-10 items-center'>
+                <div className='flex grow p-8 items-center'>
                     <MultipleChoice choices={options} onChoice={onChoice} answer={answer.current} />
                 </div>
             </div>

@@ -10,9 +10,9 @@ const MultipleChoice = ({ choices, onChoice, answer }: multipleChoiceProps) => {
             onChoice(false);
         }
     }
-    const colors = ['#FF0000', '#28ff28', '#0000FF', '#ffaa00', '#00FFFF', '#FF00FF'];
+    const colors = ['#FF0000', '#14b514', '#0000FF', '#ffaa00', '#027c7c', '#FF00FF'];
     return (
-        <div className="flex flex-wrap justify-center items-center gap-3 w-full">
+        <div className="flex flex-wrap justify-center items-center gap-5 w-full">
             {choices.map((choice, index) => {
                 const color = colors[index];
                 return (
