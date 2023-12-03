@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { WordPair } from "../App";
+import { WordPair } from "../../pages/game";
 
 type ModalProps = {
   isOpen: boolean;
@@ -8,7 +8,7 @@ type ModalProps = {
   setItem: (item: WordPair) => void;
 };
 
-const Modal: React.FC<ModalProps> = ({ isOpen, setIsOpen, item, setItem }) => {
+const AddModal  = ({ isOpen, setIsOpen, item, setItem }: ModalProps) => {
   const [modifiedWord, setModifiedWord] = useState(item.verb);
   const [modifiedTranslation, setModifiedTranslation] = useState(item.translation);
 
@@ -75,4 +75,4 @@ const Modal: React.FC<ModalProps> = ({ isOpen, setIsOpen, item, setItem }) => {
   );
 };
 
-export default Modal;
+export default AddModal;

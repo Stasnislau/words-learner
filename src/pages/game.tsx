@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import styles from '../styles';
 import useTimeout from '../hooks/useTimeout';
 import MultipleChoice from '../components/multipleChoice';
+import { GameOverModal } from '../components/modals';
 
 export interface WordPair {
     verb: string;
@@ -17,9 +18,9 @@ const GamePage = () => {
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
     const [CurrentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
     const [time, setTimer] = useTimeout(60, false, () => {
-        alert('Time is up!');
-        isGameOn.current = false;
+        handleNext();
     });
+    const [isGameOver, setIsGameOver] = useState<boolean>(false);
     const isGameOn = useRef<boolean>(true); // make it false on start, add a button to start the game
     const answer = useRef<string>('');
     const question = useRef<string>('');
@@ -38,7 +39,7 @@ const GamePage = () => {
                 localOptions.push(randomPair.translation);
             }
         }
-        setOptions(localOptions.sort(() => Math.random() - 0.5)); // shuffle the options
+        setOptions(localOptions.sort(() => Math.random() - 0.5));
         setTimer(true);
     }, [CurrentQuestionNumber]);
 
@@ -49,6 +50,7 @@ const GamePage = () => {
         if (CurrentQuestionNumber === numberOfQuestions) {
             alert('Game over!'); // TODO: show the score and stuff
             isGameOn.current = false;
+            setIsGameOver(true);
             return;
         }
         setCurrentQuestionNumber(prev => prev + 1);
@@ -92,6 +94,7 @@ const GamePage = () => {
                     <MultipleChoice choices={options} onChoice={onChoice} answer={answer.current} />
                 </div>
             </div>
+            {isGameOver && <GameOverModal numberOfCorrectAnswers={numberOfCorrectAnswers} numberOfQuestions={numberOfQuestions} onRestart={() => { }} onExit={() => { }} />}
 
         </div >
     );
