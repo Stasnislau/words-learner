@@ -233,5 +233,10 @@
         "verb": "vouloir",
         "translation": "chcieć",
         "group": "3 irregular cikawostki"
+    },
+    {
+        "verb": "devenir",
+        "translation": "stawać się",
+        "group": "3 irregular cikawostki"
     }
 ]
