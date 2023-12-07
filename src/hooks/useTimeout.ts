@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const useTimeout = (
   initialTime: number,
   startImmediately: boolean,
+  delay: number,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   callBack: (props?: any) => any
 ) => {
@@ -12,6 +13,11 @@ const useTimeout = (
   useEffect(() => {
     if (time === 0) return;
     if (!isRunning) return;
+    // wait the delay before starting the timer
+    if (time === initialTime) {
+      const timer = setTimeout(() => setTime(time - 1), delay);
+      return () => clearTimeout(timer);
+    }
     const timer = setTimeout(() => setTime(time - 1), 1000);
     return () => clearTimeout(timer);
   }, [time, isRunning]);

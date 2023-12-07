@@ -5,6 +5,7 @@ import styles from '../styles';
 import useTimeout from '../hooks/useTimeout';
 import MultipleChoice from '../components/multipleChoice';
 import { GameOverModal } from '../components/modals';
+import { Question } from '../components/game';
 
 export interface WordPair {
     verb: string;
@@ -17,18 +18,18 @@ const GamePage = () => {
     const wordPairs = wordPairsData as WordPair[];
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
     const [CurrentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
-    const [time, setTimer] = useTimeout(60, false, () => {
+    const [time, setTimer] = useTimeout(60, false, 1500, () => {
         handleNext();
     });
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
-    const isGameOn = useRef<boolean>(true); // make it false on start, add a button to start the game
+    const isGameOn = useRef<boolean>(false);
     const answer = useRef<string>('');
     const question = useRef<string>('');
     const [options, setOptions] = useState<string[]>([]);
+    const [hasFirstCountdownFinished, setHasFirstCountdownFinished] = useState<boolean>(false);
 
     useEffect(() => {
         const pair = wordPairs[Math.floor(Math.random() * (wordPairs.length - 1))];
-        console.log(pair)
         question.current = pair.verb;
         answer.current = pair.translation;
 
@@ -48,7 +49,6 @@ const GamePage = () => {
             return;
         }
         if (CurrentQuestionNumber === numberOfQuestions) {
-            alert('Game over!'); // TODO: show the score and stuff
             isGameOn.current = false;
             setIsGameOver(true);
             return;
@@ -71,11 +71,7 @@ const GamePage = () => {
         <div className="w-full h-screen flex flex-col">
             <div className="flex flex-col grow">
                 <div className='flex flex-col w-full justify-center items-center mt-6'>
-                    <div className="flex flex-row w-fit bg-white justify-center  px-20 py-4">
-                        <p className='font-normal lg:text-lg text-md'>What is the translation of
-                            <p className='font-bold lg:text-3xl text-xl text-center'>{question.current}</p>
-                        </p>
-                    </div>
+                    <Question question={question.current} />
                 </div>
                 <div className="flex flex-0.5 flex-row justify-end items-center gap-3 pt-2 px-10">
                     <button className={styles.grayButton} onClick={handleNext}>

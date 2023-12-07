@@ -12,11 +12,11 @@ const MultipleChoice = ({ choices, onChoice, answer }: multipleChoiceProps) => {
     }
     const colors = ['#FF0000', '#14b514', '#0000FF', '#ffaa00', '#027c7c', '#FF00FF'];
     return (
-        <div className="flex flex-wrap justify-center items-center gap-5 w-full">
+        <div className="flex flex-wrap justify-center items-center gap-5 w-full overflow-x-hidden">
             {choices.map((choice, index) => {
                 const color = colors[index];
                 return (
-                    <ChoiceTile key={index} choice={choice} color={color} onChoice={handleChoice} />
+                    <ChoiceTile key={index} index={index} choice={choice} color={color} onChoice={handleChoice} />
                 )
             })}
 

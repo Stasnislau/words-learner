@@ -7,5 +7,6 @@ export interface multipleChoiceProps {
 export interface choiceTileProps {
     choice: string;
     color: string;
+    index: number;
     onChoice: (choice: string) => void;
 }
