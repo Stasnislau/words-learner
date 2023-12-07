@@ -5,7 +5,7 @@ import styles from '../styles';
 import useTimeout from '../hooks/useTimeout';
 import MultipleChoice from '../components/multipleChoice';
 import { GameOverModal } from '../components/modals';
-import { Question } from '../components/game';
+import { InitialCountdown, Question } from '../components/game';
 
 export interface WordPair {
     verb: string;
@@ -18,7 +18,7 @@ const GamePage = () => {
     const wordPairs = wordPairsData as WordPair[];
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
     const [CurrentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
-    const [time, setTimer] = useTimeout(60, false, 1500, () => {
+    const [time, setTimer] = useTimeout(60, false, 5500, () => {
         handleNext();
     });
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
@@ -69,29 +69,35 @@ const GamePage = () => {
 
     return (
         <div className="w-full h-screen flex flex-col">
-            <div className="flex flex-col grow">
-                <div className='flex flex-col w-full justify-center items-center mt-6'>
-                    <Question question={question.current} />
-                </div>
-                <div className="flex flex-0.5 flex-row justify-end items-center gap-3 pt-2 px-10">
-                    <button className={styles.grayButton} onClick={handleNext}>
-                        Skip
-                    </button>
-                </div>
-                <div className='flex justify-between align-middle gap-3 p-10'>
-                    <div className='flex flex-row gap-3 p-4 bg-white shadow-sm rounded-xl'>
-                        <p className='text-5xl font-bold'>{time}</p>
+            {hasFirstCountdownFinished ? (
+                <div className="flex flex-col grow">
+                    <div className='flex flex-col w-full justify-center items-center mt-6'>
+                        <Question question={question.current} />
                     </div>
-                    <div className='flex flex-row  gap-3 p-4 bg-white shadow-sm rounded-xl'>
-                        <p className='text-5xl font-bold'>{numberOfCorrectAnswers}</p>
+                    <div className="flex flex-0.5 flex-row justify-end items-center gap-3 pt-2 px-10">
+                        <button className={styles.grayButton} onClick={handleNext}>
+                            Skip
+                        </button>
                     </div>
+                    <div className='flex justify-between align-middle gap-3 p-10'>
+                        <div className='flex flex-row gap-3 p-4 bg-white shadow-sm rounded-xl'>
+                            <p className='text-5xl font-bold'>{time}</p>
+                        </div>
+                        <div className='flex flex-row  gap-3 p-4 bg-white shadow-sm rounded-xl'>
+                            <p className='text-5xl font-bold'>{numberOfCorrectAnswers}</p>
+                        </div>
+                    </div>
+                    <div className='flex grow p-8 items-center'>
+                        <MultipleChoice choices={options} onChoice={onChoice} answer={answer.current} />
+                    </div>
+                    {isGameOver && <GameOverModal numberOfCorrectAnswers={numberOfCorrectAnswers} numberOfQuestions={numberOfQuestions} onRestart={() => { }} onExit={() => { }} />}
                 </div>
-                <div className='flex grow p-8 items-center'>
-                    <MultipleChoice choices={options} onChoice={onChoice} answer={answer.current} />
-                </div>
-            </div>
-            {isGameOver && <GameOverModal numberOfCorrectAnswers={numberOfCorrectAnswers} numberOfQuestions={numberOfQuestions} onRestart={() => { }} onExit={() => { }} />}
+            ) : (
 
+                <InitialCountdown onFinished={() => {
+                    isGameOn.current = true;
+                    setHasFirstCountdownFinished(true);
+                }} />)}
         </div >
     );
 };
