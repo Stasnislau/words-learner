@@ -1,7 +1,7 @@
 import { ChoiceTile } from "../tiles/choiceTile";
 import { multipleChoiceProps } from "../../types";
 
-
+// TODO: add icons to see if the answer is correct or not (green checkmark or red X) and lower the opacity of the tiles after the user has clicked on one of them
 const MultipleChoice = ({ choices, onChoice, answer }: multipleChoiceProps) => {
     const handleChoice = (choice: string) => {
         if (choice === answer) {

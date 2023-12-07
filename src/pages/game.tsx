@@ -5,7 +5,7 @@ import styles from '../styles';
 import useTimeout from '../hooks/useTimeout';
 import MultipleChoice from '../components/multipleChoice';
 import { GameOverModal } from '../components/modals';
-import { InitialCountdown, Question } from '../components/game';
+import { InitialCountdown, Question, Timer } from '../components/game';
 
 export interface WordPair {
     verb: string;
@@ -80,9 +80,7 @@ const GamePage = () => {
                         </button>
                     </div>
                     <div className='flex justify-between align-middle gap-3 p-10'>
-                        <div className='flex flex-row gap-3 p-4 bg-white shadow-sm rounded-xl'>
-                            <p className='text-5xl font-bold'>{time}</p>
-                        </div>
+                        <Timer time={time} />
                         <div className='flex flex-row  gap-3 p-4 bg-white shadow-sm rounded-xl'>
                             <p className='text-5xl font-bold'>{numberOfCorrectAnswers}</p>
                         </div>
