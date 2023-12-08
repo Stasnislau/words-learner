@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const useTimeout = (
   initialTime: number,
@@ -9,26 +9,30 @@ const useTimeout = (
 ) => {
   const [time, setTime] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(startImmediately);
+  const callbackRef = useRef(callBack); // store the callback in a ref
 
+  // update the callback ref every time it changes
   useEffect(() => {
-    if (time === 0) return;
-    if (!isRunning) return;
-    // wait the delay before starting the timer
-    if (time === initialTime) {
-      const timer = setTimeout(() => setTime(time - 1), delay);
-      return () => clearTimeout(timer);
-    }
-    const timer = setTimeout(() => setTime(time - 1), 1000);
-    return () => clearTimeout(timer);
-  }, [time, isRunning]);
-
-  useEffect(() => {
-    if (time === 0) callBack();
-  }, [time, callBack]);
+    callbackRef.current = callBack;
+  }, [callBack]);
 
   useEffect(() => {
     if (isRunning) setTime(initialTime);
-  }, [isRunning, initialTime]);
+  }, [isRunning]);
+
+  useEffect(() => {
+    if (time === 0) {
+      callbackRef.current(); // call the callback
+      setIsRunning(false);
+      return;
+    }
+    if (!isRunning) return;
+    const timer = setTimeout(
+      () => setTime(time - 1),
+      time === initialTime ? delay : 1000
+    );
+    return () => clearTimeout(timer); // clear the timeout when the component unmounts
+  }, [time, isRunning, initialTime, delay]);
 
   return [time, setIsRunning] as const;
 };

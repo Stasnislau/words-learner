@@ -3,15 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Timer = ({ time }: { time: number }) => {
 
     const variants = {
-        initial: { opacity: 0, y: -50, scale: 0.7, rotate: -90, color: "#000" },
+        initial: { opacity: 0, y: -40, scale: 0.7, rotate: -90, color: "#000" },
         animate: { opacity: 1, y: 0, scale: 1, rotate: 0, color: "#000" },
-        exit: { opacity: 0, y: 50, scale: 0.7, rotate: 90, color: "#000" },
+        exit: { opacity: 0, y: 40, scale: 0.7, rotate: 90, color: "#000" },
     };
 
     const lastFiveSecondsVariants = {
-        initial: { opacity: 0, y: -50, scale: 1.5, rotate: -90, color: "#000" },
+        initial: { opacity: 0, y: -40, scale: 1.5, rotate: -90, color: "#000" },
         animate: { opacity: 1, y: 0, scale: 1, rotate: 0, color: "#f00" },
-        exit: { opacity: 0, y: 50, scale: 0.5, rotate: 90, color: "#000" },
+        exit: { opacity: 0, y: 40, scale: 0.5, rotate: 90, color: "#000" },
     };
 
     const digits = time.toString().padStart(2, '0').split('');

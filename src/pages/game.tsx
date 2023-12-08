@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import wordPairsData from '../wordPairs.json';
-import { motion } from 'framer-motion';
 import styles from '../styles';
 import useTimeout from '../hooks/useTimeout';
 import MultipleChoice from '../components/multipleChoice';
@@ -18,7 +17,8 @@ const GamePage = () => {
     const wordPairs = wordPairsData as WordPair[];
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
     const [CurrentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
-    const [time, setTimer] = useTimeout(60, false, 5500, () => {
+    const [time, setTimer] = useTimeout(5, false, 5500, () => {
+        console.log('timeout', CurrentQuestionNumber, numberOfQuestions, isGameOver, CurrentQuestionNumber === numberOfQuestions );
         handleNext();
     });
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
@@ -54,6 +54,7 @@ const GamePage = () => {
             return;
         }
         setCurrentQuestionNumber(prev => prev + 1);
+        setTimer(true);
     };
 
     const onChoice = (isCorrect: boolean) => {
