@@ -4,7 +4,7 @@ import styles from '../styles';
 import useTimeout from '../hooks/useTimeout';
 import MultipleChoice from '../components/multipleChoice';
 import { GameOverModal } from '../components/modals';
-import { InitialCountdown, Question, Timer } from '../components/game';
+import { InitialCountdown, Question, Timer, Counter } from '../components/game';
 
 export interface WordPair {
     verb: string;
@@ -18,7 +18,6 @@ const GamePage = () => {
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
     const [CurrentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
     const [time, setTimer] = useTimeout(5, false, 5500, () => {
-        console.log('timeout', CurrentQuestionNumber, numberOfQuestions, isGameOver, CurrentQuestionNumber === numberOfQuestions );
         handleNext();
     });
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
@@ -82,9 +81,7 @@ const GamePage = () => {
                     </div>
                     <div className='flex justify-between align-middle gap-3 p-10'>
                         <Timer time={time} />
-                        <div className='flex flex-row  gap-3 p-4 bg-white shadow-sm rounded-xl'>
-                            <p className='text-5xl font-bold'>{numberOfCorrectAnswers}</p>
-                        </div>
+                        <Counter value={numberOfCorrectAnswers} />
                     </div>
                     <div className='flex grow p-8 items-center'>
                         <MultipleChoice choices={options} onChoice={onChoice} answer={answer.current} />
