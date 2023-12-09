@@ -8,32 +8,32 @@ const useTimeout = (
   callBack: (props?: any) => any
 ) => {
   const [time, setTime] = useState(initialTime);
-  const [isRunning, setIsRunning] = useState(startImmediately);
-  const callbackRef = useRef(callBack); // store the callback in a ref
-
-  // update the callback ref every time it changes
+  const isRunning = useRef(startImmediately);
+  const callbackRef = useRef(callBack); 
   useEffect(() => {
     callbackRef.current = callBack;
   }, [callBack]);
 
   useEffect(() => {
-    if (isRunning) setTime(initialTime);
-  }, [isRunning]);
+    if (isRunning.current) setTime(initialTime);
+  }, [isRunning.current]);
 
   useEffect(() => {
     if (time === 0) {
       callbackRef.current(); // call the callback
-      setIsRunning(false);
+      isRunning.current = false;
       return;
     }
-    if (!isRunning) return;
+    if (!isRunning.current) return;
     const timer = setTimeout(
       () => setTime(time - 1),
       time === initialTime ? delay : 1000
     );
     return () => clearTimeout(timer); // clear the timeout when the component unmounts
-  }, [time, isRunning, initialTime, delay]);
-
+  }, [time, isRunning.current, isRunning, initialTime, delay]);
+  const setIsRunning = (value: boolean) => {
+    isRunning.current = value;
+  }
   return [time, setIsRunning] as const;
 };
 

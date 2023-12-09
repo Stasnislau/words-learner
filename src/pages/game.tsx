@@ -16,10 +16,11 @@ const GamePage = () => {
     const numberOfQuestions = 100; // TODO: make this a prop read from the URL
     const wordPairs = wordPairsData as WordPair[];
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
-    const [CurrentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
-    const [time, setTimer] = useTimeout(5, false, 5500, () => {
+    const [CurrentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
+    const [time, setTimer] = useTimeout(60, false, 5500, () => {
         handleNext();
     });
+    const [key, setKey] = useState<number>(0);
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
     const isGameOn = useRef<boolean>(false);
     const answer = useRef<string>('');
@@ -53,7 +54,7 @@ const GamePage = () => {
             return;
         }
         setCurrentQuestionNumber(prev => prev + 1);
-        setTimer(true);
+        setKey(prev => prev + 1);
     };
 
     const onChoice = (isCorrect: boolean) => {
@@ -61,7 +62,7 @@ const GamePage = () => {
             return;
         }
         if (isCorrect) {
-            setNumberOfCorrectAnswers(numberOfCorrectAnswers + 1);
+            setNumberOfCorrectAnswers(prev => prev + 1);
         }
         setTimer(false);
         handleNext();
@@ -72,7 +73,7 @@ const GamePage = () => {
             {hasFirstCountdownFinished ? (
                 <div className="flex flex-col grow">
                     <div className='flex flex-col w-full justify-center items-center mt-6'>
-                        <Question question={question.current} />
+                        <Question key={"question" + key} question={question.current} />
                     </div>
                     <div className="flex flex-0.5 flex-row justify-end items-center gap-3 pt-2 px-10">
                         <button className={styles.grayButton} onClick={handleNext}>
@@ -81,10 +82,10 @@ const GamePage = () => {
                     </div>
                     <div className='flex justify-between align-middle gap-3 p-10'>
                         <Timer time={time} />
-                        <Counter value={numberOfCorrectAnswers} />
+                        <Counter key={"counter" + key} value={numberOfCorrectAnswers} />
                     </div>
                     <div className='flex grow p-8 items-center'>
-                        <MultipleChoice choices={options} onChoice={onChoice} answer={answer.current} />
+                        <MultipleChoice key={"choice" + key} choices={options} onChoice={onChoice} answer={answer.current} />
                     </div>
                     {isGameOver && <GameOverModal numberOfCorrectAnswers={numberOfCorrectAnswers} numberOfQuestions={numberOfQuestions} onRestart={() => { }} onExit={() => { }} />}
                 </div>
