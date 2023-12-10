@@ -44,6 +44,14 @@ const GamePage = () => {
         setTimer(true);
     }, [CurrentQuestionNumber]);
 
+    const handleSkip = () => {
+        if (!isGameOn.current) {
+            return;
+        }
+        setTimer(false);
+        handleNext();
+    };
+
     const handleNext = () => {
         if (!isGameOn.current) {
             return;
@@ -74,7 +82,7 @@ const GamePage = () => {
                 <div className="flex flex-col grow">
                     <Question key={"question" + key} question={question.current} />
                     <div className="flex flex-0.5 flex-row justify-end items-center gap-3 pt-2 md:px-10 px-5">
-                        <button className={styles.grayButton} onClick={handleNext}>
+                        <button className={styles.grayButton} onClick={handleSkip}>
                             Skip
                         </button>
                     </div>
