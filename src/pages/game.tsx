@@ -72,15 +72,13 @@ const GamePage = () => {
         <div className="w-full h-screen flex flex-col">
             {hasFirstCountdownFinished ? (
                 <div className="flex flex-col grow">
-                    <div className='flex flex-col w-full justify-center items-center mt-6'>
-                        <Question key={"question" + key} question={question.current} />
-                    </div>
-                    <div className="flex flex-0.5 flex-row justify-end items-center gap-3 pt-2 px-10">
+                    <Question key={"question" + key} question={question.current} />
+                    <div className="flex flex-0.5 flex-row justify-end items-center gap-3 pt-2 md:px-10 px-5">
                         <button className={styles.grayButton} onClick={handleNext}>
                             Skip
                         </button>
                     </div>
-                    <div className='flex justify-between align-middle gap-3 p-10'>
+                    <div className='flex justify-between align-middle gap-3 md:p-10 p-5'>
                         <Timer time={time} />
                         <Counter key={"counter" + key} value={numberOfCorrectAnswers} />
                     </div>

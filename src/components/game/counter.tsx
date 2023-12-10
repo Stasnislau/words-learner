@@ -9,7 +9,7 @@ const Counter = ({ value }: { value: number }) => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <p className="text-5xl font-bold">{value}</p>
+                    <p className="lg:text-6xl text-2xl font-bold">{value}</p>
                 </motion.div>
             </div>
         </AnimatePresence>

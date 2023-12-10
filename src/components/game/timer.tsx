@@ -17,7 +17,7 @@ const Timer = ({ time }: { time: number }) => {
     const digits = time.toString().padStart(2, '0').split('');
 
     return (
-        <div className="flex justify-center items-center bg-white shadow-sm rounded-full p-4 min-w-max min-h-max">
+        <div className="flex justify-center items-center bg-white shadow-sm rounded-full lg:p-4 p-2 min-w-max min-h-max">
             <AnimatePresence mode="popLayout">
                 {digits.map((digit, index) => (
                     <motion.span
@@ -27,7 +27,7 @@ const Timer = ({ time }: { time: number }) => {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.5 }}
-                        className="text-6xl font-bold font-mono"
+                        className="lg:text-6xl text-2xl font-bold font-mono"
                     >
                         {digit}
                     </motion.span>
