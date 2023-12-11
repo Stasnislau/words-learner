@@ -1,15 +1,30 @@
 import { choiceTileProps } from "../../types"
-import { animate, motion } from "framer-motion"
+import { motion } from "framer-motion"
+import { useEffect, useState } from "react";
+import correctIcon from "../../assets/icons/correct.svg";
+import wrongIcon from "../../assets/icons/wrong.svg";
 
 const ChoiceTile = ({
     color,
     choice,
     index,
+    isRevealed,
+    answer,
     onChoice }: choiceTileProps) => {
+    const [isCorrect, setIsCorrect] = useState<boolean>(false);
+    useEffect(() => {
+        if (isRevealed) {
+            if (choice === answer) {
+                setIsCorrect(true);
+            }
+        }
+    }, [isRevealed]);
+
     return (
         <motion.div style={
             {
                 backgroundColor: color,
+                boxShadow: "0px 2px 10px 0px rgba(0,0,0,0.4)",
             }
 
         }
@@ -22,14 +37,43 @@ const ChoiceTile = ({
                 display: "flex",
                 opacity: 1,
                 x: 0,
+                transition: {
+                    duration: 0.8,
+                    delay: 1,
+                }
             }}
             transition={{
-                duration: 0.8,
-                delay: 1,
+                duration: 0.1
             }}
-            className={`flex flex-col shadow-[0px 4px 4px rgba(0, 0, 0, 0.25)] md:w-[45%] w-full hover:scale-[102%]`}>
-            <button className="flex flex-col justify-center text-white rounded-xl lg:h-20 p-4" onClick={() => onChoice(choice)}>
+            whileHover={
+                isRevealed ? {} :
+                    {
+                        scale: 1.02,
+                        transition: { duration: 0 }, // specify a different transition for hover effects
+                    }}
+            whileTap={{
+                scale: 1,
+                transition: { duration: 0 }, // specify a different transition for when the cursor leaves the element
+            }}
+            className={`flex flex-col md:w-[45%] w-full`}
+        >
+            <button className={`flex flex-row justify-between items-center text-white rounded-xl lg:h-20 p-4 ${isRevealed ? isCorrect ? "opacity-100" : "opacity-50" : "opacity-100"}`} onClick={() => {
+                if (isRevealed) {
+                    return;
+                }
+                onChoice(choice)
+            }}>
                 <p className="lg:text-3xl md:text-xl text-lg font-bold drop-shadow-sm">{choice}</p>
+                {isRevealed && (
+                    <div className="flex flex-row justify-center items-center">
+                        {isCorrect ? (
+                            <img src={correctIcon} />
+
+                        ) : (
+                            <img src={wrongIcon} />
+                        )}
+                    </div>
+                )}
             </button>
         </motion.div>
     )

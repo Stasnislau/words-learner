@@ -5,6 +5,7 @@ import useTimeout from '../hooks/useTimeout';
 import MultipleChoice from '../components/multipleChoice';
 import { GameOverModal } from '../components/modals';
 import { InitialCountdown, Question, Timer, Counter } from '../components/game';
+import { TIME_FOR_QUESTIONS, INITIAL_DELAY} from '../constants';
 
 export interface WordPair {
     verb: string;
@@ -17,9 +18,10 @@ const GamePage = () => {
     const wordPairs = wordPairsData as WordPair[];
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
     const [CurrentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
-    const [time, setTimer] = useTimeout(60, false, 5500, () => {
-        handleNext();
+    const [time, setTimer] = useTimeout(TIME_FOR_QUESTIONS, false, INITIAL_DELAY, () => {
+        handleSkip();
     });
+    const [isRevealed, setIsRevealed] = useState<boolean>(false);
     const [key, setKey] = useState<number>(0);
     const [isGameOver, setIsGameOver] = useState<boolean>(false);
     const isGameOn = useRef<boolean>(false);
@@ -49,6 +51,7 @@ const GamePage = () => {
             return;
         }
         setTimer(false);
+        setIsRevealed(true);
         handleNext();
     };
 
@@ -61,8 +64,11 @@ const GamePage = () => {
             setIsGameOver(true);
             return;
         }
-        setCurrentQuestionNumber(prev => prev + 1);
-        setKey(prev => prev + 1);
+        setTimeout(() => {
+            setIsRevealed(false);
+            setCurrentQuestionNumber(prev => prev + 1);
+            setKey(prev => prev + 1);
+        }, 3000);
     };
 
     const onChoice = (isCorrect: boolean) => {
@@ -72,6 +78,7 @@ const GamePage = () => {
         if (isCorrect) {
             setNumberOfCorrectAnswers(prev => prev + 1);
         }
+        setIsRevealed(true);
         setTimer(false);
         handleNext();
     };
@@ -91,7 +98,7 @@ const GamePage = () => {
                         <Counter key={"counter" + key} value={numberOfCorrectAnswers} />
                     </div>
                     <div className='flex grow p-8 items-center'>
-                        <MultipleChoice key={"choice" + key} choices={options} onChoice={onChoice} answer={answer.current} />
+                        <MultipleChoice key={"choice" + key} choices={options} onChoice={onChoice} answer={answer.current} isRevealed={isRevealed} />
                     </div>
                     {isGameOver && <GameOverModal numberOfCorrectAnswers={numberOfCorrectAnswers} numberOfQuestions={numberOfQuestions} onRestart={() => { }} onExit={() => { }} />}
                 </div>

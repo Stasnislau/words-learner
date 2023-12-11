@@ -3,10 +3,6 @@ import { useEffect, useState } from "react";
 
 const Question = ({ question }: { question: string }) => {
     const [isQuestionVisible, setIsQuestionVisible] = useState(false);
-    const [isAnimationComplete, setIsAnimationComplete] = useState(false);
-    const handleAnimationComplete = () => {
-        setIsAnimationComplete(true);
-    };
     useEffect(() => {
         setTimeout(() => {
             setIsQuestionVisible(true);
