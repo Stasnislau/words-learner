@@ -15,6 +15,7 @@ export interface choiceTileProps {
 }
 
 export interface gameFooterProps {
+  hasFirstCountdownFinished: boolean;
   numberOfQuestions: number;
   currentQuestionNumber: number;
   isMuted: boolean;

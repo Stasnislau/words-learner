@@ -3,6 +3,7 @@ import styles from '../styles';
 
 
 const HomePage = () => {
+    const [numberOfQuestions, setNumberOfQuestions] = useState<number>(20);
     return (
         <div className='w-full h-full py-20'>
             <div className=" flex justify-center items-center">
@@ -13,7 +14,7 @@ const HomePage = () => {
             </div>
             <button className={`${styles.purpleButton}`} onClick={
                 () => {
-                    window.location.href = "/game";
+                    window.location.href = `/game/${numberOfQuestions}`;
                 }
             }>
                 Start

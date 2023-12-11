@@ -10,6 +10,7 @@ import GameFooter from '../components/game/gameFooter';
 import gameMusic from './../assets/sounds/game.wav';
 import nextQuestion from './../assets/sounds/nextQuestion.mp3';
 import choiceMade from './../assets/sounds/choiceMade.mp3';
+import { useParams } from 'react-router-dom';
 
 export interface WordPair {
     verb: string;
@@ -36,7 +37,7 @@ const GamePage = () => {
         }
     ]
     const [musicSource, setMusicSource] = useState<string>('game');
-    const numberOfQuestions = 100; // TODO: make this a prop read from the URL
+    const numberOfQuestions = Number(useParams<{ questions: string }>().questions);
     const wordPairs = wordPairsData as WordPair[];
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
     const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
@@ -55,12 +56,19 @@ const GamePage = () => {
     const [isMuted, setIsMuted] = useState<boolean>(true);
 
     useEffect(() => {
-        console.log('music source changed', musicSource);
+        const muteButton = document.getElementById('mute-button-click');
+        muteButton?.click();
+    }, [])
+    useEffect(() => {
+        if (!hasFirstCountdownFinished) 
+        {
+            return;
+        }
         if (audioRef.current) {
             audioRef.current.load();
             audioRef.current.play();
         }
-    }, [musicSource]);
+    }, [musicSource, hasFirstCountdownFinished]);
 
     useEffect(() => {
         const pair = wordPairs[Math.floor(Math.random() * (wordPairs.length - 1))];
@@ -83,6 +91,7 @@ const GamePage = () => {
             return;
         }
         setTimer(false);
+        setMusicSource('choiceMade');
         setIsRevealed(true);
         handleNext();
     };
@@ -157,11 +166,8 @@ const GamePage = () => {
                     isGameOn.current = true;
                     setHasFirstCountdownFinished(true);
                 }} />)}
-            {
-                hasFirstCountdownFinished &&
-                <GameFooter numberOfQuestions={numberOfQuestions} currentQuestionNumber={currentQuestionNumber} isMuted={isMuted} setIsMuted={setIsMuted}
-                />
-            }
+            <GameFooter numberOfQuestions={numberOfQuestions} currentQuestionNumber={currentQuestionNumber} isMuted={isMuted} setIsMuted={setIsMuted} hasFirstCountdownFinished={hasFirstCountdownFinished}
+            />
             <audio ref={audioRef} src={availableMusic.find((file) => file.name === musicSource)?.src} loop={availableMusic.find((file) => file.name === musicSource)?.isRepeatable} muted={isMuted} />
         </div >
     );

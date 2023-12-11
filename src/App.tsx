@@ -8,7 +8,7 @@ const App = () => {
       component: HomePage,
     },
     {
-      path: '/game',
+      path: '/game/:questions',
       component: GamePage,
     },
   ]
