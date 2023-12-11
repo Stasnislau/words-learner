@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const Question = ({ question }: { question: string }) => {
+const Question = ({ question, onAnimationFinish }: {
+    question: string, onAnimationFinish
+        : () => void
+}) => {
     const [isQuestionVisible, setIsQuestionVisible] = useState(false);
     useEffect(() => {
         setTimeout(() => {
@@ -14,6 +17,9 @@ const Question = ({ question }: { question: string }) => {
             initial={{ opacity: 0.3, position: "absolute", transform: "translate(-50%, -50%) scale(1.5)", top: "50%", left: "50%" }}
             animate={isQuestionVisible ? { opacity: 1, top: "18%", transform: "scale(1) translate(-50%, -50%)" } : { opacity: 1 }}
             transition={isQuestionVisible ? { duration: 0.5, delay: 0.5 } : { duration: 0.8 }}
+            onAnimationComplete={() => {
+                onAnimationFinish();
+            }}
         >
             <p className='font-normal lg:text-lg text-md'>What is the translation of
                 <p className='font-bold lg:text-3xl text-xl text-center'>{isQuestionVisible

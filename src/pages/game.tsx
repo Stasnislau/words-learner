@@ -8,6 +8,8 @@ import { InitialCountdown, Question, Timer, Counter } from '../components/game';
 import { TIME_FOR_QUESTIONS, INITIAL_DELAY } from '../constants';
 import GameFooter from '../components/game/gameFooter';
 import gameMusic from './../assets/sounds/game.wav';
+import nextQuestion from './../assets/sounds/nextQuestion.mp3';
+import choiceMade from './../assets/sounds/choiceMade.mp3';
 
 export interface WordPair {
     verb: string;
@@ -16,6 +18,24 @@ export interface WordPair {
 }
 
 const GamePage = () => {
+    const availableMusic = [
+        {
+            name: 'game',
+            src: gameMusic,
+            isRepeatable: true
+        },
+        {
+            name: 'nextQuestion',
+            src: nextQuestion,
+            isRepeatable: false
+        },
+        {
+            name: 'choiceMade',
+            src: choiceMade,
+            isRepeatable: false
+        }
+    ]
+    const [musicSource, setMusicSource] = useState<string>('game');
     const numberOfQuestions = 100; // TODO: make this a prop read from the URL
     const wordPairs = wordPairsData as WordPair[];
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
@@ -33,6 +53,14 @@ const GamePage = () => {
     const [hasFirstCountdownFinished, setHasFirstCountdownFinished] = useState<boolean>(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const [isMuted, setIsMuted] = useState<boolean>(true);
+
+    useEffect(() => {
+        console.log('music source changed', musicSource);
+        if (audioRef.current) {
+            audioRef.current.load();
+            audioRef.current.play();
+        }
+    }, [musicSource]);
 
     useEffect(() => {
         const pair = wordPairs[Math.floor(Math.random() * (wordPairs.length - 1))];
@@ -69,10 +97,12 @@ const GamePage = () => {
             return;
         }
         setTimeout(() => {
+            setMusicSource('nextQuestion');
             setIsRevealed(false);
             setCurrentQuestionNumber(prev => prev + 1);
             setKey(prev => prev + 1);
         }, 3000);
+
     };
 
     useEffect(() => {
@@ -81,6 +111,7 @@ const GamePage = () => {
         } else {
             audioRef.current?.pause();
         }
+        console.log('next question', musicSource);
     }, [isGameOn.current]);
 
     const onChoice = (isCorrect: boolean) => {
@@ -90,7 +121,9 @@ const GamePage = () => {
         if (isCorrect) {
             setNumberOfCorrectAnswers(prev => prev + 1);
         }
+        setMusicSource('choiceMade');
         setIsRevealed(true);
+        console.log('choice made', musicSource)
         setTimer(false);
         handleNext();
     };
@@ -99,7 +132,11 @@ const GamePage = () => {
         <div className="w-full h-screen flex flex-col">
             {hasFirstCountdownFinished ? (
                 <div className="flex flex-col grow">
-                    <Question key={"question" + key} question={question.current} />
+                    <Question key={"question" + key} question={question.current} onAnimationFinish={
+                        () => {
+                            setMusicSource('game');
+                        }
+                    } />
                     <div className="flex flex-0.5 flex-row justify-end items-center gap-3 pt-2 md:px-10 px-5">
                         <button className={styles.grayButton} onClick={handleSkip}>
                             Skip
@@ -125,7 +162,7 @@ const GamePage = () => {
                 <GameFooter numberOfQuestions={numberOfQuestions} currentQuestionNumber={currentQuestionNumber} isMuted={isMuted} setIsMuted={setIsMuted}
                 />
             }
-            <audio ref={audioRef} src={gameMusic} loop muted={isMuted} />
+            <audio ref={audioRef} src={availableMusic.find((file) => file.name === musicSource)?.src} loop={availableMusic.find((file) => file.name === musicSource)?.isRepeatable} muted={isMuted} />
         </div >
     );
 };
