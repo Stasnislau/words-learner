@@ -37,11 +37,13 @@ const useTimeout = (
   }, [delay, initialTime, startImmediately]);
 
   useEffect(() => {
-    if (isRunning.current) setTime(initialTime);
+    if (isRunning.current) {
+      setTime(initialTime);
+    }
   }, [isRunning.current]);
 
   useEffect(() => {
-    if (time === 0) {
+    if (time === 0 && isRunning.current) {
       callbackRef.current(); // call the callback
       isRunning.current = false;
       return;
@@ -49,7 +51,7 @@ const useTimeout = (
     if (!isRunning.current) return;
     const timer = setTimeout(() => setTime(time - 1), calculateTimer());
     return () => clearTimeout(timer); // clear the timeout when the component unmounts
-  }, [time, isRunning.current, initialTime, delay, hasDelayFinished.current]);
+  }, [time, hasDelayFinished.current]);
   const setIsRunning = (value: boolean) => {
     isRunning.current = value;
   };
