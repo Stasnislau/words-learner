@@ -6,6 +6,8 @@ import MultipleChoice from '../components/multipleChoice';
 import { GameOverModal } from '../components/modals';
 import { InitialCountdown, Question, Timer, Counter } from '../components/game';
 import { TIME_FOR_QUESTIONS, INITIAL_DELAY } from '../constants';
+import GameFooter from '../components/game/gameFooter';
+import gameMusic from './../assets/sounds/game.wav';
 
 export interface WordPair {
     verb: string;
@@ -17,7 +19,7 @@ const GamePage = () => {
     const numberOfQuestions = 100; // TODO: make this a prop read from the URL
     const wordPairs = wordPairsData as WordPair[];
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
-    const [CurrentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
+    const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
     const [time, setTimer] = useTimeout(TIME_FOR_QUESTIONS, false, INITIAL_DELAY, () => {
         handleSkip();
     });
@@ -29,6 +31,8 @@ const GamePage = () => {
     const question = useRef<string>('');
     const [options, setOptions] = useState<string[]>([]);
     const [hasFirstCountdownFinished, setHasFirstCountdownFinished] = useState<boolean>(false);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const [isMuted, setIsMuted] = useState<boolean>(true);
 
     useEffect(() => {
         const pair = wordPairs[Math.floor(Math.random() * (wordPairs.length - 1))];
@@ -44,13 +48,10 @@ const GamePage = () => {
         }
         setOptions(localOptions.sort(() => Math.random() - 0.5));
         setTimer(true);
-    }, [CurrentQuestionNumber]);
+    }, [currentQuestionNumber]);
 
     const handleSkip = () => {
-        if (isRevealed) {
-            return;
-        }
-        if (!isGameOn.current) {
+        if (!isGameOn.current || isRevealed) {
             return;
         }
         setTimer(false);
@@ -62,7 +63,7 @@ const GamePage = () => {
         if (!isGameOn.current) {
             return;
         }
-        if (CurrentQuestionNumber === numberOfQuestions) {
+        if (currentQuestionNumber === numberOfQuestions) {
             isGameOn.current = false;
             setIsGameOver(true);
             return;
@@ -73,6 +74,14 @@ const GamePage = () => {
             setKey(prev => prev + 1);
         }, 3000);
     };
+
+    useEffect(() => {
+        if (isGameOn.current) {
+            audioRef.current?.play();
+        } else {
+            audioRef.current?.pause();
+        }
+    }, [isGameOn.current]);
 
     const onChoice = (isCorrect: boolean) => {
         if (!isGameOn.current) {
@@ -111,6 +120,12 @@ const GamePage = () => {
                     isGameOn.current = true;
                     setHasFirstCountdownFinished(true);
                 }} />)}
+            {
+                hasFirstCountdownFinished &&
+                <GameFooter numberOfQuestions={numberOfQuestions} currentQuestionNumber={currentQuestionNumber} isMuted={isMuted} setIsMuted={setIsMuted}
+                />
+            }
+            <audio ref={audioRef} src={gameMusic} loop muted={isMuted} />
         </div >
     );
 };

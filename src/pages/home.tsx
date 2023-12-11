@@ -11,8 +11,12 @@ const HomePage = () => {
             <div className=" flex justify-center items-center">
                 <h1 className={`${styles.secondaryFunnyText} text-4xl`}>Ready to learn some french today?:)</h1>
             </div>
-            <button className={`${styles.purpleButton}`}>
-                <a href="/game">Start</a>
+            <button className={`${styles.purpleButton}`} onClick={
+                () => {
+                    window.location.href = "/game";
+                }
+            }>
+                Start
             </button>
         </div>
     );
