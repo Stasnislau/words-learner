@@ -49,11 +49,11 @@ const ChoiceTile = ({
                 isRevealed ? {} :
                     {
                         scale: 1.02,
-                        transition: { duration: 0 }, // specify a different transition for hover effects
+                        transition: { duration: 0 }, 
                     }}
             whileTap={{
                 scale: 1,
-                transition: { duration: 0 }, // specify a different transition for when the cursor leaves the element
+                transition: { duration: 0 },
             }}
             className={`flex flex-col md:w-[45%] w-full`}
         >

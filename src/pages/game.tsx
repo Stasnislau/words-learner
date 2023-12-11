@@ -5,7 +5,7 @@ import useTimeout from '../hooks/useTimeout';
 import MultipleChoice from '../components/multipleChoice';
 import { GameOverModal } from '../components/modals';
 import { InitialCountdown, Question, Timer, Counter } from '../components/game';
-import { TIME_FOR_QUESTIONS, INITIAL_DELAY} from '../constants';
+import { TIME_FOR_QUESTIONS, INITIAL_DELAY } from '../constants';
 
 export interface WordPair {
     verb: string;
@@ -47,6 +47,9 @@ const GamePage = () => {
     }, [CurrentQuestionNumber]);
 
     const handleSkip = () => {
+        if (isRevealed) {
+            return;
+        }
         if (!isGameOn.current) {
             return;
         }
