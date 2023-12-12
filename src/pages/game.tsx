@@ -10,13 +10,15 @@ import GameFooter from '../components/game/gameFooter';
 import gameMusic from './../assets/sounds/game.wav';
 import nextQuestion from './../assets/sounds/nextQuestion.mp3';
 import choiceMade from './../assets/sounds/choiceMade.mp3';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { wordCard, gameStatistics } from '../types';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const GamePage = () => {
-
+    const navigate = useNavigate();
+    const isEnoughWords = useRef<boolean>(true);
     const gameStatisticsRef = useRef<gameStatistics>({
         totalQuestions: 0,
         correctAnswers: 0,
@@ -43,8 +45,41 @@ const GamePage = () => {
         }
     ]
     const [musicSource, setMusicSource] = useState<string>('game');
-    const numberOfQuestions = Number(useParams<{ questions: string }>().questions);
-    const wordPairs = wordPairsData as wordCard[];
+    const { questions } = useParams<{ questions: string }>();
+    const numberOfQuestions = Number(questions);
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const topicIds = queryParams.get('topics')?.split(',').map(Number) || [];
+    const wordPairs = useRef<wordCard[]>(wordPairsData);
+
+    useEffect(() => {
+        const filteredPairs = wordPairsData.filter((wordPair) => {
+            if (!topicIds) {
+                return true;
+            }
+            if (!wordPair) {
+                return false;
+            }
+            const topicIdsOfWordPair = wordPair.topics?.map((topic) => topic.id);
+            if (!topicIdsOfWordPair) {
+                return false;
+            }
+
+            return topicIdsOfWordPair.some((topicId) => topicIds.includes(topicId));
+        });
+        if (filteredPairs.length < 5) {
+            if (isEnoughWords.current) {
+                console.log('not enough words, redirecting')
+                return navigate('/');
+            }
+            isEnoughWords.current = false;
+
+        }
+        wordPairs.current = filteredPairs;
+    }, [topicIds, wordPairsData]);
+
+
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
     const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
     const [time, setTimer] = useTimeout(TIME_FOR_QUESTIONS, false, INITIAL_DELAY, () => {
@@ -77,13 +112,15 @@ const GamePage = () => {
     }, [musicSource, hasFirstCountdownFinished]);
 
     useEffect(() => {
-        const pair = wordPairs[Math.floor(Math.random() * (wordPairs.length - 1))];
+        if (wordPairs.current.length < 5) {
+            return
+        }
+        const pair = wordPairs.current[Math.floor(Math.random() * (wordPairs.current.length - 1))];
         question.current = pair.word;
         answer.current = pair.translation;
-
         const localOptions: string[] = [answer.current];
         while (localOptions.length < 4) {
-            const randomPair = wordPairs[Math.floor(Math.random() * (wordPairs.length - 1))];
+            const randomPair = wordPairs.current[Math.floor(Math.random() * (wordPairs.current.length - 1))];
             if (!localOptions.includes(randomPair.translation)) {
                 localOptions.push(randomPair.translation);
             }
@@ -147,7 +184,6 @@ const GamePage = () => {
         } else {
             audioRef.current?.pause();
         }
-        console.log('next question', musicSource);
     }, [isGameOn.current]);
 
     const onChoice = (isCorrect: boolean) => {
@@ -164,7 +200,6 @@ const GamePage = () => {
         }
         setMusicSource('choiceMade');
         setIsRevealed(true);
-        console.log('choice made', musicSource)
 
         handleNext();
     };
@@ -206,7 +241,7 @@ const GamePage = () => {
                         setHasFirstCountdownFinished(false);
                         setIsRevealed(false);
                     }} onExit={() => {
-                        window.location.href = '/';
+                        navigate('/');
                     }} />}
                 </div>
             ) : (

@@ -25,7 +25,12 @@ export interface gameFooterProps {
 export interface wordCard {
   word: string;
   translation: string;
-  topics?: string[];
+  topics?: topic[];
+}
+
+export interface topic {
+  id: number;
+  name: string;
 }
 
 export interface gameStatistics {

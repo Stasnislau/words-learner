@@ -3,349 +3,540 @@
         "word": "Trouver",
         "translation": "Znaleźć",
         "topics": [
-            "1 regular"
+            {
+                "id": 1,
+                "name": "1 regular"
+            }
         ]
     },
     {
         "word": "Finir",
         "translation": "Kończyć",
         "topics": [
-            "2 regular"
+            {
+                "id": 2,
+                "name": "2 regular"
+            }
         ]
     },
     {
         "word": "Choisir",
         "translation": "Wybierać",
         "topics": [
-            "2 regular"
+            {
+                "id": 2,
+                "name": "2 regular"
+            }
         ]
     },
     {
         "word": "Réfléchir",
         "translation": "Zastanawiać się",
         "topics": [
-            "2 regular"
+            {
+                "id": 2,
+                "name": "2 regular"
+            }
         ]
     },
     {
         "word": "Obéir",
         "translation": "Słuchać się",
         "topics": [
-            "2 regular"
+            {
+                "id": 2,
+                "name": "2 regular"
+            }
         ]
     },
     {
         "word": "Appeler",
         "translation": "Nazywać",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Payer",
         "translation": "Płacić",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Envoyer",
         "translation": "Wysyłać",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Essayer",
         "translation": "Przymierzać (ubranie)",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Essayer de",
         "translation": "Próbować",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Manger",
         "translation": "Jeść",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Nager",
         "translation": "Pływać",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Changer",
         "translation": "Zmieniać",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Ranger",
         "translation": "Porządkować/układać",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Commencer",
         "translation": "Zaczynać",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Ouvrir",
         "translation": "Otwierać",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Souffrir",
         "translation": "Cierpieć",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Offrir",
         "translation": "Oferować/podarować",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Couvrir",
         "translation": "Przykrywać",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "Decouvrir",
         "translation": "Odkrywać",
         "topics": [
-            "1 irregular"
+            {
+                "id": 3,
+                "name": "1 irregular"
+            }
         ]
     },
     {
         "word": "détendre",
         "translation": "odprężać",
         "topics": [
-            "3 regular"
+            {
+                "id": 4,
+                "name": "3 regular"
+            }
         ]
     },
     {
         "word": "Attendre",
         "translation": "Czekać",
-        "topics": "3 regular"
+        "topics": [
+            {
+                "id": 4,
+                "name": "3 regular"
+            }
+        ]
     },
     {
         "word": "Courir",
         "translation": "Biegać",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "Prendre",
         "translation": "Brać",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "Apprendre",
         "translation": "Uczyć się",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "Comprendre",
         "translation": "Rozumieć",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "Surprendre",
         "translation": "Zaskakiwać",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "Vendre",
         "translation": "Sprzedawać",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "Partir",
         "translation": "Wyjeżdżać",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "Sortir",
         "translation": "Wychodzić",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "Mentir",
         "translation": "Kłamać",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "Dormir",
         "translation": "Spać",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "Se sentir",
         "translation": "Czuć się",
         "topics": [
-            "3 irregular"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            }
         ]
     },
     {
         "word": "faire",
         "translation": "robić",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "dire",
         "translation": "mówić",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "boire",
         "translation": "pić",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "devoir",
         "translation": "musieć",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "venir",
         "translation": "przychodzić",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "tenir",
         "translation": "trzymać",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "voir",
         "translation": "widzieć",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "pouvoir",
         "translation": "móc",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "savoir",
         "translation": "wiedzieć",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "recevoir",
         "translation": "otrzymywać",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "lire",
         "translation": "czytać",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "écrire",
         "translation": "pisać",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "connaître",
         "translation": "znać",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "vouloir",
         "translation": "chcieć",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     },
     {
         "word": "devenir",
         "translation": "stawać się",
         "topics": [
-            "3 irregular",
-            "cikawostki"
+            {
+                "id": 5,
+                "name": "3 irregular"
+            },
+            {
+                "id": 6,
+                "name": "cikawostki"
+            }
         ]
     }
 ]

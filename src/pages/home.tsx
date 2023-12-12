@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
 import styles from '../styles';
+import { availableTopics } from '../constants';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
-    const [numberOfQuestions, setNumberOfQuestions] = useState<number>(20);
-    const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-
-    const topics = ['Topic 1', 'Topic 2', 'Topic 3'];
+    const navigate = useNavigate();
+    const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
+    const [selectedTopicsIds, setSelectedTopicsIds] = useState<number[]>([]);
 
     const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
-            setSelectedTopics([...selectedTopics, event.target.value]);
+            setSelectedTopicsIds([...selectedTopicsIds, Number(event.target.value)]);
         } else {
-            setSelectedTopics(selectedTopics.filter(topic => topic !== event.target.value));
+            setSelectedTopicsIds(selectedTopicsIds.filter(id => id !== Number(event.target.value)));
+        }
+        if (event.target.value === 'all') {
+            if (event.target.checked) {
+                setSelectedTopicsIds(availableTopics.map(topic => topic.id));
+            } else {
+                setSelectedTopicsIds([]);
+            }
         }
     };
 
@@ -41,18 +49,24 @@ const HomePage = () => {
                     </label>
                 </div>
                 <div className="flex justify-center items-center flex-wrap mt-5">
-                    {topics.map(topic => (
-                        <label key={topic} className="m-2">
-                            <input type="checkbox" value={topic} onChange={handleTopicChange} />
-                            {topic}
+                    {availableTopics.map(topic => (
+                        <label key={topic.id} className="m-2">
+                            <input type="checkbox" checked={
+                                selectedTopicsIds.includes(topic.id)
+                            } value={topic.id} onChange={handleTopicChange} />
+                            {topic.name}
                         </label>
                     ))}
+                    <label className="m-2">
+                        <input type="checkbox" value="all" onChange={handleTopicChange} />
+                        All
+                    </label>
                 </div>
                 <div className="flex justify-center items-center mt-10">
                     <button
                         className={`${styles.purpleButton} px-8 py-4 text-white text-2xl rounded-lg shadow-lg`}
                         onClick={() => {
-                            window.location.href = `/game/${numberOfQuestions}?topics=${selectedTopics.join(',')}`;
+                            navigate(`/game/${numberOfQuestions}?topics=${selectedTopicsIds.join(',')}`);
                         }}
                     >
                         Start
