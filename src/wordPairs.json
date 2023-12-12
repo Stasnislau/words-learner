@@ -1,242 +1,351 @@
 [
     {
-        "verb": "Trouver",
+        "word": "Trouver",
         "translation": "Znaleźć",
-        "group": "1 regular"
+        "topics": [
+            "1 regular"
+        ]
     },
     {
-        "verb": "Finir",
+        "word": "Finir",
         "translation": "Kończyć",
-        "group": "2 regular"
+        "topics": [
+            "2 regular"
+        ]
     },
     {
-        "verb": "Choisir",
+        "word": "Choisir",
         "translation": "Wybierać",
-        "group": "2 regular"
+        "topics": [
+            "2 regular"
+        ]
     },
     {
-        "verb": "Réfléchir",
+        "word": "Réfléchir",
         "translation": "Zastanawiać się",
-        "group": "2 regular"
+        "topics": [
+            "2 regular"
+        ]
     },
     {
-        "verb": "Obéir",
+        "word": "Obéir",
         "translation": "Słuchać się",
-        "group": "2 regular"
+        "topics": [
+            "2 regular"
+        ]
     },
     {
-        "verb": "Appeler",
+        "word": "Appeler",
         "translation": "Nazywać",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Payer",
+        "word": "Payer",
         "translation": "Płacić",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Envoyer",
+        "word": "Envoyer",
         "translation": "Wysyłać",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Essayer",
+        "word": "Essayer",
         "translation": "Przymierzać (ubranie)",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Essayer de",
+        "word": "Essayer de",
         "translation": "Próbować",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Manger",
+        "word": "Manger",
         "translation": "Jeść",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Nager",
+        "word": "Nager",
         "translation": "Pływać",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Changer",
+        "word": "Changer",
         "translation": "Zmieniać",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Ranger",
+        "word": "Ranger",
         "translation": "Porządkować/układać",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Commencer",
+        "word": "Commencer",
         "translation": "Zaczynać",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Ouvrir",
+        "word": "Ouvrir",
         "translation": "Otwierać",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Souffrir",
+        "word": "Souffrir",
         "translation": "Cierpieć",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Offrir",
-        "translation": "Oferować/ podarować",
-        "group": "1 irregular"
+        "word": "Offrir",
+        "translation": "Oferować/podarować",
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Couvrir",
+        "word": "Couvrir",
         "translation": "Przykrywać",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "Decouvrir",
+        "word": "Decouvrir",
         "translation": "Odkrywać",
-        "group": "1 irregular"
+        "topics": [
+            "1 irregular"
+        ]
     },
     {
-        "verb": "détendre",
+        "word": "détendre",
         "translation": "odprężać",
-        "group": "3 regular"
+        "topics": [
+            "3 regular"
+        ]
     },
     {
-        "verb": "Attendre",
+        "word": "Attendre",
         "translation": "Czekać",
-        "group": "3 regular"
+        "topics": "3 regular"
     },
     {
-        "verb": "Courir",
+        "word": "Courir",
         "translation": "Biegać",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "Prendre",
+        "word": "Prendre",
         "translation": "Brać",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "Apprendre",
+        "word": "Apprendre",
         "translation": "Uczyć się",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "Comprendre",
+        "word": "Comprendre",
         "translation": "Rozumieć",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "Surprendre",
+        "word": "Surprendre",
         "translation": "Zaskakiwać",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "Vendre",
+        "word": "Vendre",
         "translation": "Sprzedawać",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "Partir",
+        "word": "Partir",
         "translation": "Wyjeżdżać",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "Sortir",
+        "word": "Sortir",
         "translation": "Wychodzić",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "Mentir",
+        "word": "Mentir",
         "translation": "Kłamać",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "Dormir",
+        "word": "Dormir",
         "translation": "Spać",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "Se sentir",
+        "word": "Se sentir",
         "translation": "Czuć się",
-        "group": "3 irregular"
+        "topics": [
+            "3 irregular"
+        ]
     },
     {
-        "verb": "faire",
+        "word": "faire",
         "translation": "robić",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "dire",
+        "word": "dire",
         "translation": "mówić",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "boire",
+        "word": "boire",
         "translation": "pić",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "devoir",
+        "word": "devoir",
         "translation": "musieć",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "venir",
+        "word": "venir",
         "translation": "przychodzić",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "tenir",
+        "word": "tenir",
         "translation": "trzymać",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "voir",
+        "word": "voir",
         "translation": "widzieć",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "pouvoir",
+        "word": "pouvoir",
         "translation": "móc",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "savoir",
+        "word": "savoir",
         "translation": "wiedzieć",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "recevoir",
+        "word": "recevoir",
         "translation": "otrzymywać",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "lire",
+        "word": "lire",
         "translation": "czytać",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "écrire",
+        "word": "écrire",
         "translation": "pisać",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "connaître",
+        "word": "connaître",
         "translation": "znać",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "vouloir",
+        "word": "vouloir",
         "translation": "chcieć",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     },
     {
-        "verb": "devenir",
+        "word": "devenir",
         "translation": "stawać się",
-        "group": "3 irregular cikawostki"
+        "topics": [
+            "3 irregular",
+            "cikawostki"
+        ]
     }
 ]

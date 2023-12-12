@@ -11,14 +11,20 @@ import gameMusic from './../assets/sounds/game.wav';
 import nextQuestion from './../assets/sounds/nextQuestion.mp3';
 import choiceMade from './../assets/sounds/choiceMade.mp3';
 import { useParams } from 'react-router-dom';
+import { wordCard, gameStatistics } from '../types';
 
-export interface WordPair {
-    verb: string;
-    translation: string;
-    group?: string;
-}
+
 
 const GamePage = () => {
+
+    const gameStatisticsRef = useRef<gameStatistics>({
+        totalQuestions: 0,
+        correctAnswers: 0,
+        skippedAnswers: 0,
+        incorrectAnswers: 0,
+        totalTime: 0,
+        words: []
+    });
     const availableMusic = [
         {
             name: 'game',
@@ -38,9 +44,9 @@ const GamePage = () => {
     ]
     const [musicSource, setMusicSource] = useState<string>('game');
     const numberOfQuestions = Number(useParams<{ questions: string }>().questions);
-    const wordPairs = wordPairsData as WordPair[];
+    const wordPairs = wordPairsData as wordCard[];
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
-    const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
+    const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
     const [time, setTimer] = useTimeout(TIME_FOR_QUESTIONS, false, INITIAL_DELAY, () => {
         handleSkip();
     });
@@ -54,14 +60,14 @@ const GamePage = () => {
     const [hasFirstCountdownFinished, setHasFirstCountdownFinished] = useState<boolean>(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const [isMuted, setIsMuted] = useState<boolean>(true);
+    const gameStatistics = useRef<{ correctAnswers: number, wrongAnswers: number }>({ correctAnswers: 0, wrongAnswers: 0 });
 
     useEffect(() => {
         const muteButton = document.getElementById('mute-button-click');
         muteButton?.click();
     }, [])
     useEffect(() => {
-        if (!hasFirstCountdownFinished) 
-        {
+        if (!hasFirstCountdownFinished) {
             return;
         }
         if (audioRef.current) {
@@ -72,7 +78,7 @@ const GamePage = () => {
 
     useEffect(() => {
         const pair = wordPairs[Math.floor(Math.random() * (wordPairs.length - 1))];
-        question.current = pair.verb;
+        question.current = pair.word;
         answer.current = pair.translation;
 
         const localOptions: string[] = [answer.current];
@@ -85,12 +91,33 @@ const GamePage = () => {
         setOptions(localOptions.sort(() => Math.random() - 0.5));
         setTimer(true);
     }, [currentQuestionNumber]);
+    const handleStatistics = (status: "correct" | "incorrect" | "skipped") => {
+        gameStatisticsRef.current.totalQuestions++;
+        if (status === "skipped") {
+            gameStatisticsRef.current.skippedAnswers++;
+        }
+        if (status === "correct") {
+            gameStatisticsRef.current.correctAnswers++;
+            gameStatisticsRef.current.totalTime += (TIME_FOR_QUESTIONS - time);
+        }
+        if (status === "incorrect") {
+            gameStatisticsRef.current.incorrectAnswers++;
+            gameStatisticsRef.current.totalTime += (TIME_FOR_QUESTIONS - time);
+        }
+        gameStatisticsRef.current.words.push({
+            word: question.current,
+            translation: answer.current,
+            success: status,
+            time: TIME_FOR_QUESTIONS - time
+        });
+    }
 
     const handleSkip = () => {
         if (!isGameOn.current || isRevealed) {
             return;
         }
         setTimer(false);
+        handleStatistics('skipped');
         setMusicSource('choiceMade');
         setIsRevealed(true);
         handleNext();
@@ -127,15 +154,21 @@ const GamePage = () => {
         if (!isGameOn.current) {
             return;
         }
+        setTimer(false);
         if (isCorrect) {
             setNumberOfCorrectAnswers(prev => prev + 1);
+            handleStatistics('correct');
+        }
+        else {
+            handleStatistics('incorrect');
         }
         setMusicSource('choiceMade');
         setIsRevealed(true);
         console.log('choice made', musicSource)
-        setTimer(false);
+
         handleNext();
     };
+
 
     return (
         <div className="w-full h-screen flex flex-col">
@@ -158,7 +191,23 @@ const GamePage = () => {
                     <div className='flex grow p-8 items-center'>
                         <MultipleChoice key={"choice" + key} choices={options} onChoice={onChoice} answer={answer.current} isRevealed={isRevealed} />
                     </div>
-                    {isGameOver && <GameOverModal numberOfCorrectAnswers={numberOfCorrectAnswers} numberOfQuestions={numberOfQuestions} onRestart={() => { }} onExit={() => { }} />}
+                    {isGameOver && <GameOverModal gameStatistics={gameStatisticsRef.current} onRestart={() => {
+                        setIsGameOver(false);
+                        setCurrentQuestionNumber(1);
+                        setNumberOfCorrectAnswers(0);
+                        gameStatisticsRef.current = {
+                            totalQuestions: 0,
+                            correctAnswers: 0,
+                            skippedAnswers: 0,
+                            incorrectAnswers: 0,
+                            totalTime: 0,
+                            words: []
+                        };
+                        setHasFirstCountdownFinished(false);
+                        setIsRevealed(false);
+                    }} onExit={() => {
+                        window.location.href = '/';
+                    }} />}
                 </div>
             ) : (
 

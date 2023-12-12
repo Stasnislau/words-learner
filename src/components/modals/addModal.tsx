@@ -1,24 +1,24 @@
 import { useState } from "react";
-import { WordPair } from "../../pages/game";
+import { wordCard } from "../../types";
 
 type ModalProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  item: WordPair;
-  setItem: (item: WordPair) => void;
+  item: wordCard;
+  setItem: (item: wordCard) => void;
 };
 
 const AddModal  = ({ isOpen, setIsOpen, item, setItem }: ModalProps) => {
-  const [modifiedWord, setModifiedWord] = useState(item.verb);
+  const [modifiedWord, setModifiedWord] = useState(item.word);
   const [modifiedTranslation, setModifiedTranslation] = useState(item.translation);
 
   const handleSave = () => {
-    setItem({ verb: modifiedWord, translation: modifiedTranslation });
+    setItem({ word: modifiedWord, translation: modifiedTranslation });
     setIsOpen(false);
   };
 
   const handleCancel = () => {
-    setModifiedWord(item.verb);
+    setModifiedWord(item.word);
     setModifiedTranslation(item.translation);
     setIsOpen(false);
   };

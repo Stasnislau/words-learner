@@ -21,3 +21,25 @@ export interface gameFooterProps {
   isMuted: boolean;
   setIsMuted: (isMuted: boolean) => void;
 }
+
+export interface wordCard {
+  word: string;
+  translation: string;
+  topics?: string[];
+}
+
+export interface gameStatistics {
+  totalQuestions: number;
+  correctAnswers: number;
+  skippedAnswers: number;
+  incorrectAnswers: number;
+  totalTime: number;
+  words: statisticsWord[];
+}
+
+export interface statisticsWord {
+  word: string;
+  translation: string;
+  success: "correct" | "incorrect" | "skipped";
+  time: number;
+}
