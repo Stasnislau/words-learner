@@ -1,5 +1,6 @@
 import { gameOverText } from "../../constants";
 import { gameStatistics } from "../../types";
+import BarChart from "../graphs/barChart";
 
 
 interface gameOverProps {
@@ -9,42 +10,65 @@ interface gameOverProps {
 }
 const GameOverModal = ({ gameStatistics, onRestart, onExit }: gameOverProps) => {
     const { totalQuestions, correctAnswers, skippedAnswers, incorrectAnswers, totalTime, words } = gameStatistics;
+    const topics = words.map((word) => {
+        return word.topic;
+    });
+    const topicSet = new Set(topics);
+    const topicArray = Array.from(topicSet);
+    const items = topicArray.map((topic) => {
+        const correct = words.filter((word) => {
+            return word.topic.id === topic.id && word.success === "correct";
+        }).length;
+        return {
+            topic: topic,
+            correct: correct
+        }
+    });
+    const tableHeaders = ["Word", "Translation", "Success", "Time"];
+    const tableRows = words.map((word) => {
+        return (
+            <tr key={word.word}>
+                <td>{word.word}</td>
+                <td>{word.translation}</td>
+                <td>{word.success}</td>
+                <td>{word.time}</td>
+            </tr>
+        )
+    });
     return (
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-10">
-            <div className="bg-white w-3/4 h-3/4 rounded-lg flex flex-col justify-center items-center">
-                <div className="flex flex-col items-center justify-center">
-                    <h1 className="text-4xl font-bold text-center">Game Over</h1>
-                    <h2 className="text-2xl font-bold text-center">{gameOverText.finish}</h2>
+            <div className="bg-white w-3/4 h-3/4 rounded-lg flex flex-col items-center p-4">
+                <div className="flex flex-col justify-center items-center">
+                    <h1 className="text-3xl font-bold">Game Over</h1>
+                    <p className="text-lg">{gameOverText.finish}</p>
                 </div>
-                <div className="flex flex-col justify-center items-center mt-5">
-                    <div className="flex flex-row justify-between items-center w-3/4">
-                        <h1 className="text-xl">Total Questions:</h1>
-                        <h1 className="text-xl">{totalQuestions}</h1>
+                <div className="flex flex-row justify-between items-center gap-3">
+                    <BarChart items={items} />
+                    <div className="flex flex-col justify-start">
+                        <p className="text-lg">Correct: {correctAnswers}</p>
+                        <p className="text-lg">Incorrect: {incorrectAnswers}</p>
+                        <p className="text-lg">Skipped: {skippedAnswers}</p>
+                        <p className="text-lg">Total Questions: {totalQuestions}</p>
+                        <p className="text-lg">Total Time: {totalTime} seconds</p>
                     </div>
-                    <div className="flex flex-row justify-between items-center w-3/4">
-                        <h1 className="text-xl">Correct Answers:</h1>
-                        <h1 className="text-xl">{correctAnswers}</h1>
+                    <div className="flex flex-col justify-start overflow-auto">
+                        <table className="table-auto w-full text-center bg-white shadow-md rounded-lg overflow-hidden">
+                            <thead className="bg-blue-500 text-white">
+                                <tr>
+                                    {tableHeaders.map((header) => {
+                                        return (
+                                            <th key={header} className="px-4 py-2">{header}</th>
+                                        )
+                                    })}
+                                </tr>
+                            </thead>
+                            <tbody className="text-gray-700">
+                                {tableRows.map((row, index) => (
+                                    row
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                    <div className="flex flex-row justify-between items-center w-3/4">
-                        <h1 className="text-xl">Skipped Answers:</h1>
-                        <h1 className="text-xl">{skippedAnswers}</h1>
-                    </div>
-                    <div className="flex flex-row justify-between items-center w-3/4">
-                        <h1 className="text-xl">Incorrect Answers:</h1>
-                        <h1 className="text-xl">{incorrectAnswers}</h1>
-                    </div>
-                    <div className="flex flex-row justify-between items-center w-3/4">
-                        <h1 className="text-xl">Total Time:</h1>
-                        <h1 className="text-xl">{totalTime}</h1>
-                    </div>
-                    {/* <div className="flex flex-row justify-between items-center w-3/4">
-                        <h1 className="text-xl">Total Words:</h1>
-                        <h1 className="text-xl">{words}</h1>
-                    </div> */}
-                </div>
-                <div className="flex flex-row justify-center items-center mt-5">
-                    <button className="px-8 py-4 text-white text-2xl rounded-lg shadow-lg bg-purple-600 mr-5" onClick={onRestart}>Restart</button>
-                    <button className="px-8 py-4 text-white text-2xl rounded-lg shadow-lg bg-purple-600" onClick={onExit}>Exit</button>
                 </div>
             </div>
         </div>
