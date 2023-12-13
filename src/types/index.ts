@@ -25,7 +25,7 @@ export interface gameFooterProps {
 export interface wordCard {
   word: string;
   translation: string;
-  topics?: topic[];
+  topic: topic;
 }
 
 export interface topic {
@@ -47,4 +47,10 @@ export interface statisticsWord {
   translation: string;
   success: "correct" | "incorrect" | "skipped";
   time: number;
+  topic: topic;
+}
+
+export interface chartItem {
+  topic: topic;
+  correct: number;
 }

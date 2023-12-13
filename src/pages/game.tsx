@@ -55,18 +55,7 @@ const GamePage = () => {
 
     useEffect(() => {
         const filteredPairs = wordPairsData.filter((wordPair) => {
-            if (!topicIds) {
-                return true;
-            }
-            if (!wordPair) {
-                return false;
-            }
-            const topicIdsOfWordPair = wordPair.topics?.map((topic) => topic.id);
-            if (!topicIdsOfWordPair) {
-                return false;
-            }
-
-            return topicIdsOfWordPair.some((topicId) => topicIds.includes(topicId));
+            return topicIds.includes(wordPair.topic.id)
         });
         if (filteredPairs.length < 5) {
             if (isEnoughWords.current) {
@@ -74,7 +63,6 @@ const GamePage = () => {
                 return navigate('/');
             }
             isEnoughWords.current = false;
-
         }
         wordPairs.current = filteredPairs;
     }, [topicIds, wordPairsData]);
@@ -95,7 +83,14 @@ const GamePage = () => {
     const [hasFirstCountdownFinished, setHasFirstCountdownFinished] = useState<boolean>(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const [isMuted, setIsMuted] = useState<boolean>(true);
-    const gameStatistics = useRef<{ correctAnswers: number, wrongAnswers: number }>({ correctAnswers: 0, wrongAnswers: 0 });
+    const gameStatistics = useRef<gameStatistics>({
+        totalQuestions: 0,
+        correctAnswers: 0,
+        skippedAnswers: 0,
+        incorrectAnswers: 0,
+        totalTime: 0,
+        words: []
+    });
 
     useEffect(() => {
         const muteButton = document.getElementById('mute-button-click');
@@ -145,7 +140,8 @@ const GamePage = () => {
             word: question.current,
             translation: answer.current,
             success: status,
-            time: TIME_FOR_QUESTIONS - time
+            time: TIME_FOR_QUESTIONS - time,
+            topic: wordPairs.current.find((wordPair) => wordPair.word === question.current)?.topic || { id: 0, name: '' }
         });
     }
 
