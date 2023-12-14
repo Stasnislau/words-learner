@@ -66,10 +66,17 @@ const HomePage = () => {
                     <button
                         className={`${styles.purpleButton} px-8 py-4 text-white text-2xl rounded-lg shadow-lg`}
                         onClick={() => {
+                            if (selectedTopicsIds.length === 0) {
+                                alert('Please select at least one topic of minimum 5 words');
+                                return;
+                            }
                             navigate(`/game/${numberOfQuestions}?topics=${selectedTopicsIds.join(',')}`);
                         }}
                     >
                         Start
+                    </button>
+                    <button className={`${styles.greenButton} px-8 py-4 text-white text-2xl rounded-lg shadow-lg ml-5`}>
+                        Add word
                     </button>
                 </div>
             </div>
