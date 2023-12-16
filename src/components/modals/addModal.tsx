@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { wordCard } from "../../types";
+import { topic, wordCard } from "../../types";
 
 type ModalProps = {
   isOpen: boolean;
@@ -11,9 +11,13 @@ type ModalProps = {
 const AddModal  = ({ isOpen, setIsOpen, item, setItem }: ModalProps) => {
   const [modifiedWord, setModifiedWord] = useState(item.word);
   const [modifiedTranslation, setModifiedTranslation] = useState(item.translation);
+  const [topic, setTopic] = useState({} as topic);
 
   const handleSave = () => {
-    setItem({ word: modifiedWord, translation: modifiedTranslation });
+    setItem({
+      word: modifiedWord, translation: modifiedTranslation,
+      topic
+    });
     setIsOpen(false);
   };
 
