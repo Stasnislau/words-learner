@@ -175,6 +175,12 @@ const GamePage = () => {
     };
 
     useEffect(() => {
+        if (isGameOver) {
+            setMusicSource('');
+        }
+    }, [isGameOver]);
+
+    useEffect(() => {
         if (isGameOn.current) {
             audioRef.current?.play();
         } else {
