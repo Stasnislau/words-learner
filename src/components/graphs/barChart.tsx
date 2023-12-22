@@ -11,8 +11,11 @@ const BarChart = ({ items }: {
 }
 ) => {
     return (
-        <div >
+        <div>
             <Bar
+                width={100}
+                height={100}
+                options={{ maintainAspectRatio: false }}
                 data={{
                     labels: items.map((item) => {
                         return item.topic.name;
