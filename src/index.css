@@ -15,17 +15,15 @@ html {
   display: flex;
   height: 100dvh;
   width: 100dvw;
-
 }
 
 body {
+  background-image: url("assets/images/background.jpg");
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   backdrop-filter: blur(2px);
-  background-image: url("assets/images/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
-

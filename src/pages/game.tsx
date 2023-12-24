@@ -107,6 +107,15 @@ const GamePage = () => {
     }, [musicSource, hasFirstCountdownFinished]);
 
     useEffect(() => {
+        if (window.location.href.includes('game')) {
+            document.body.style.backgroundImage = "url(../src/assets/images/backgroundGame.jpg)";
+        }
+        return () => {
+            document.body.style.backgroundImage = "url(../src/assets/images/background.jpg)";
+        }
+    }, [])
+
+    useEffect(() => {
         if (wordPairs.current.length < 5) {
             return
         }

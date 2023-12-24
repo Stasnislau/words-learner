@@ -12,6 +12,7 @@ const App = () => {
       component: GamePage,
     },
   ]
+
   return (
     <BrowserRouter>
       <div className="w-full">
