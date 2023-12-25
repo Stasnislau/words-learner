@@ -9,80 +9,134 @@ const HomePage = () => {
     const [selectedTopicsIds, setSelectedTopicsIds] = useState<number[]>([]);
 
     const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.checked) {
-            setSelectedTopicsIds([...selectedTopicsIds, Number(event.target.value)]);
+        const topicId = Number(event.target.value);
+        if (topicId === -1) {
+            setSelectedTopicsIds(
+                event.target.checked
+                    ? availableTopics.map((topic) => topic.id)
+                    : []
+            );
         } else {
-            setSelectedTopicsIds(selectedTopicsIds.filter(id => id !== Number(event.target.value)));
-        }
-        if (event.target.value === 'all') {
-            if (event.target.checked) {
-                setSelectedTopicsIds(availableTopics.map(topic => topic.id));
-            } else {
-                setSelectedTopicsIds([]);
-            }
+            setSelectedTopicsIds((prevSelectedTopics) =>
+                event.target.checked
+                    ? [...prevSelectedTopics, topicId]
+                    : prevSelectedTopics.filter((id) => id !== topicId)
+            );
         }
     };
     return (
-        <div className="w-full h-full py-20 ">
-            <div className="container mx-auto">
+        <div className="w-full h-screen py-20 bg-opacity-10 bg-stone-950 ">
+            <div className="container mx-auto lg:p-16 p-10 ">
                 <div className="flex justify-center items-center">
-                    <h1 className="lg:text-6xl text-3xl text-white  font-bold">French Learning Tool</h1>
+                    <span className="lg:text-6xl text-3xl text-[#4992ea]  font-bold">French &nbsp;</span>
+                    <span className="lg:text-6xl text-3xl text-[#FFFFFF]  font-bold">Language &nbsp;</span>
+                    <span className="lg:text-6xl text-3xl text-[#ED2939]  font-bold">Quiz</span>
                 </div>
-                <div className="flex justify-center items-center pt-4">
-                    <p className="lg:text-xl text-md text-gray-200">Learn French with 
-                        <span className="font-bold"> FUN </span>
-                    </p>
-                </div>
+
                 <div className="flex justify-center items-center pt-4 flex-col">
-                    <h1 className="lg:text-3xl text-1xl text-[#EDEB58]  font-bold
+                    <h1 className="lg:text-4xl text-1xl text-white
                     ">Select number of questions</h1>
                     <div className="my-4 flex justify-center">
-                        <button className="border w-14 border-black px-4 py-1 text-4xl rounded-lg mx-2 shadow-lg bg-[#EDEB58] hover:bg-[#e2e054] disabled:opacity-50"
+                        <button className="border w-14 border-black px-4 py-1 text-4xl rounded-lg mx-2 shadow-lg bg-[#002654] hover:bg-[#132336] disabled:opacity-50 text-white"
                             disabled={numberOfQuestions === 5}
                             onClick={
                                 () => {
                                     if (numberOfQuestions === 5) {
                                         return;
                                     }
-                                    setNumberOfQuestions(numberOfQuestions - 1);
+                                    setNumberOfQuestions(numberOfQuestions - 5);
                                 }
 
                             }>-</button>
                         <span className={`text-4xl font-mono flex items-center drop-shadow-lg
-                            justify-center w-16 text-center
-                            ${numberOfQuestions === 80 ? 'text-red-500' : numberOfQuestions === 5 ? 'text-red-500' : 'text-black'}
+                            justify-center w-16 text-center font-bold
+                            ${numberOfQuestions === 80 ? 'text-red-500' : numberOfQuestions === 5 ? 'text-red-500' : 'text-gray-200'}
                             transition-all duration-300
                         `}>{numberOfQuestions}</span>
-                        <button className="border w-14 border-black px-4 py-1 text-4xl rounded-lg mx-2 shadow-lg bg-[#EDEB58] hover:bg-[#e2e054] disabled:opacity-50"
+                        <button className="border w-14 border-black px-4 py-1 text-4xl rounded-lg mx-2 shadow-lg bg-[#002654] hover:bg-[#132336] disabled:opacity-50 text-white"
                             disabled={numberOfQuestions === 80}
                             onClick={
                                 () => {
                                     if (numberOfQuestions === 80) {
                                         return;
                                     }
-                                    setNumberOfQuestions(numberOfQuestions + 1);
+                                    setNumberOfQuestions(numberOfQuestions + 5);
                                 }
 
                             }>+</button>
                     </div>
                 </div>
+                <div className="flex justify-center items-center pt-4">
+                    <h1 className="lg:text-4xl text-1xl text-white">Select topics</h1>
+                </div>
                 <div className="flex justify-center items-center flex-wrap mt-5">
-                    {availableTopics.map(topic => (
-                        <label key={topic.id} className="m-2">
-                            <input type="checkbox" checked={
-                                selectedTopicsIds.includes(topic.id)
-                            } value={topic.id} onChange={handleTopicChange} />
-                            {topic.name}
-                        </label>
+                    {availableTopics.map((topic) => (
+                        <div key={topic.id} className="m-2">
+                            <label
+                                htmlFor={`topic-${topic.id}`}
+                                className="flex items-center cursor-pointer lg:text-lg text-md"
+                            >
+                                <span className="mr-2">{topic.name}</span>
+                                <input
+                                    type="checkbox"
+                                    id={`topic-${topic.id}`}
+                                    value={topic.id}
+                                    onChange={handleTopicChange}
+                                    checked={selectedTopicsIds.includes(
+                                        topic.id
+                                    )}
+                                    className="sr-only"
+                                />
+                                <div className={
+                                    `block  w-10 h-6 rounded-full relative
+                                    ${selectedTopicsIds.includes(topic.id) ? 'bg-[#4992ea]' : 'bg-gray-600'}
+                                    `
+                                }>
+                                    <div className={`absolute left-1 top-1 w-4 h-4 rounded-full transition duration-300
+                                    transform
+                                    ${selectedTopicsIds.includes(topic.id) ? 'translate-x-full' : 'translate-x-0'}
+                                    ${selectedTopicsIds.includes(topic.id) ? 'bg-white' : 'bg-[#ed29397a]'}
+                                    `}></div>
+                                </div>
+                            </label>
+                        </div>
                     ))}
-                    <label className="m-2">
-                        <input type="checkbox" value="all" onChange={handleTopicChange} />
-                        All
-                    </label>
+                    <div className="m-2">
+                        <label
+                            htmlFor="selectAll"
+                            className="flex items-center cursor-pointer"
+                        >
+                            <span className="mr-2">All</span>
+                            <input
+                                type="checkbox"
+                                id="selectAll"
+                                value={-1}
+                                onChange={handleTopicChange}
+                                checked={
+                                    selectedTopicsIds.length ===
+                                    availableTopics.length
+                                }
+                                className="sr-only"
+                            />
+                            <div className={
+                                `block  w-10 h-6 rounded-full relative
+                                ${selectedTopicsIds.length === availableTopics.length ? 'bg-green-500' : 'bg-gray-600'}
+                                `
+                            }>
+                                <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition duration-300
+                                transform
+                                ${selectedTopicsIds.length === availableTopics.length ? 'translate-x-full' : 'translate-x-0'}
+                                `}>
+
+                                </div>
+                            </div>
+                        </label>
+
+                    </div>
                 </div>
                 <div className="flex justify-center items-center mt-10">
                     <button
-                        className={`${styles.purpleButton} px-8 py-4 text-white text-2xl rounded-lg shadow-lg`}
+                        className={`${styles.greenButton} px-8 py-4 text-white text-2xl rounded-lg shadow-lg`}
                         onClick={() => {
                             if (selectedTopicsIds.length === 0) {
                                 alert('Please select at least one topic of minimum 5 words');
@@ -93,12 +147,9 @@ const HomePage = () => {
                     >
                         Start
                     </button>
-                    <button className={`${styles.greenButton} px-8 py-4 text-white text-2xl rounded-lg shadow-lg ml-5`}>
-                        Add word
-                    </button>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
 
     );
 };
