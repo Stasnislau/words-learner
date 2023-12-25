@@ -22,27 +22,48 @@ const HomePage = () => {
             }
         }
     };
-
     return (
         <div className="w-full h-full py-20 ">
             <div className="container mx-auto">
                 <div className="flex justify-center items-center">
-                    <h1 className="lg:text-6xl text-3xl  font-bold">French Learning Tool</h1>
+                    <h1 className="lg:text-6xl text-3xl text-white  font-bold">French Learning Tool</h1>
                 </div>
                 <div className="flex justify-center items-center pt-4">
-                    <h1 className={`${styles.secondaryFunnyText} lg:text-4xl text-xl`}>Ready to learn some french today?</h1>
+                    <p className="lg:text-xl text-md text-gray-200">Learn French with 
+                        <span className="font-bold"> FUN </span>
+                    </p>
                 </div>
                 <div className="flex justify-center items-center pt-4 flex-col">
-                    <h1 className="lg:text-4xl text-2xl">Select number of questions</h1>
+                    <h1 className="lg:text-3xl text-1xl text-[#EDEB58]  font-bold
+                    ">Select number of questions</h1>
                     <div className="my-4 flex justify-center">
-                        <input
-                            type="number"
-                            id="numberOfQuestions"
-                            className="px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                            placeholder="Enter number of questions"
-                            value={numberOfQuestions}
-                            onChange={(event) => setNumberOfQuestions(Number(event.target.value))}
-                        />
+                        <button className="border w-14 border-black px-4 py-1 text-4xl rounded-lg mx-2 shadow-lg bg-[#EDEB58] hover:bg-[#e2e054] disabled:opacity-50"
+                            disabled={numberOfQuestions === 5}
+                            onClick={
+                                () => {
+                                    if (numberOfQuestions === 5) {
+                                        return;
+                                    }
+                                    setNumberOfQuestions(numberOfQuestions - 1);
+                                }
+
+                            }>-</button>
+                        <span className={`text-4xl font-mono flex items-center drop-shadow-lg
+                            justify-center w-16 text-center
+                            ${numberOfQuestions === 80 ? 'text-red-500' : numberOfQuestions === 5 ? 'text-red-500' : 'text-black'}
+                            transition-all duration-300
+                        `}>{numberOfQuestions}</span>
+                        <button className="border w-14 border-black px-4 py-1 text-4xl rounded-lg mx-2 shadow-lg bg-[#EDEB58] hover:bg-[#e2e054] disabled:opacity-50"
+                            disabled={numberOfQuestions === 80}
+                            onClick={
+                                () => {
+                                    if (numberOfQuestions === 80) {
+                                        return;
+                                    }
+                                    setNumberOfQuestions(numberOfQuestions + 1);
+                                }
+
+                            }>+</button>
                     </div>
                 </div>
                 <div className="flex justify-center items-center flex-wrap mt-5">
