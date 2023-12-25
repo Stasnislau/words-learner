@@ -25,7 +25,7 @@ const HomePage = () => {
         }
     };
     return (
-        <div className="w-full h-screen py-20 bg-opacity-10 bg-stone-950 ">
+        <div className="w-full h-screen py-20 bg-opacity-[22%] bg-stone-950 ">
             <div className="container mx-auto lg:p-16 p-10 ">
                 <div className="flex justify-center items-center">
                     <span className="lg:text-6xl text-3xl text-[#4992ea]  font-bold">French &nbsp;</span>
@@ -123,7 +123,8 @@ const HomePage = () => {
                                 ${selectedTopicsIds.length === availableTopics.length ? 'bg-green-500' : 'bg-gray-600'}
                                 `
                             }>
-                                <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition duration-300
+                                <div className={`absolute left-1 top-1  w-4 h-4 rounded-full transition duration-300 
+                                ${selectedTopicsIds.length === availableTopics.length ? 'bg-white' : 'bg-[#ed29397a]'}
                                 transform
                                 ${selectedTopicsIds.length === availableTopics.length ? 'translate-x-full' : 'translate-x-0'}
                                 `}>
@@ -134,9 +135,16 @@ const HomePage = () => {
 
                     </div>
                 </div>
-                <div className="flex justify-center items-center mt-10">
+                <div className="flex justify-center items-center mt-10 flex-row gap-5">
+                    <button className="lg:text-2xl text-lg  px-4 py-2 rounded-lg shadow-lg border font-bold text-[#ED2939]  hover:border-[#ED2939] h-14
+                        bg-stone-950 bg-opacity-30
+                        hover:scale-105 transform transition-all duration-300
+                    ">
+                        Add new word
+                    </button>
+
                     <button
-                        className={`${styles.greenButton} px-8 py-4 text-white text-2xl rounded-lg shadow-lg`}
+                        className="lg:text-4xl text-1xl text-white px-10 py-2 rounded-lg shadow-lg bg-[#002654] hover:bg-[#132336]  hover:scale-105 transform transition-all duration-300 h-14"
                         onClick={() => {
                             if (selectedTopicsIds.length === 0) {
                                 alert('Please select at least one topic of minimum 5 words');
