@@ -57,13 +57,17 @@ const ChoiceTile = ({
             }}
             className={`flex flex-col md:w-[45%] w-full`}
         >
-            <button className={`flex flex-row justify-between items-center text-white rounded-xl lg:h-20 p-4 ${isRevealed ? isCorrect ? "opacity-100" : "opacity-50" : "opacity-100"}`} onClick={() => {
+            <button className={`flex flex-row justify-between items-center text-white lg:h-20 p-4 ${isRevealed ? isCorrect ? "opacity-100" : "opacity-50" : "opacity-100"}`} onClick={() => {
                 if (isRevealed) {
                     return;
                 }
                 onChoice(choice)
             }}>
-                <p className="lg:text-3xl md:text-xl text-lg font-bold drop-shadow-sm">{choice}</p>
+                <p style={
+                    {
+                        textShadow: "0px 0px 10px #000000",
+                    }
+                } className="lg:text-3xl md:text-xl text-lg font-bold">{choice}</p>
                 {isRevealed && (
                     <div className="flex flex-row justify-center items-center">
                         {isCorrect ? (

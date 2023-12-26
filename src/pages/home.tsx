@@ -25,7 +25,7 @@ const HomePage = () => {
         }
     };
     return (
-        <div className="w-full h-screen py-20 bg-opacity-[22%] bg-stone-950 ">
+        <div className="w-full h-screen py-20 bg-opacity-[15%] bg-stone-950 ">
             <div className="container mx-auto lg:p-16 p-10 ">
                 <div className="flex justify-center items-center">
                     <span className="lg:text-6xl text-3xl text-[#4992ea]  font-bold">French &nbsp;</span>
@@ -48,7 +48,12 @@ const HomePage = () => {
                                 }
 
                             }>-</button>
-                        <span className={`text-4xl font-mono flex items-center drop-shadow-lg
+                        <span
+                            style={{
+                                textShadow: '0px 0px 10px #000000',
+                            }
+                            }
+                            className={`text-4xl font-mono flex items-center
                             justify-center w-16 text-center font-bold
                             ${numberOfQuestions === 80 ? 'text-red-500' : numberOfQuestions === 5 ? 'text-red-500' : 'text-gray-200'}
                             transition-all duration-300
@@ -67,7 +72,11 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="flex justify-center items-center pt-4">
-                    <h1 className="lg:text-4xl text-1xl text-white">Select topics</h1>
+                    <h1 className="lg:text-4xl text-1xl text-white"
+                        style={{
+                            textShadow: '0px 0px 10px #000000',
+                        }}
+                    >Select topics</h1>
                 </div>
                 <div className="flex justify-center items-center flex-wrap mt-5">
                     {availableTopics.map((topic) => (
