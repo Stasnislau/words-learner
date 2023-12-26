@@ -7,12 +7,12 @@ export const availableTopics = [
     name: "1 regular",
   },
   {
-    id: 2,
-    name: "2 regular",
-  },
-  {
     id: 3,
     name: "1 irregular",
+  },
+  {
+    id: 2,
+    name: "2 regular",
   },
   {
     id: 4,

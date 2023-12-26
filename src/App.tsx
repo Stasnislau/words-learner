@@ -1,7 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { HomePage, GamePage } from "./pages"
+import { useEffect } from "react"
+import wordPairs from "./wordPairs.json"
 
 const App = () => {
+
+  useEffect(() => {
+    if (!localStorage.getItem("wordList") || localStorage.getItem("wordList") === "[]") {
+      localStorage.setItem("wordList", JSON.stringify(wordPairs))
+    }
+  }, [])
+
   const availableRoutes = [
     {
       path: '/',

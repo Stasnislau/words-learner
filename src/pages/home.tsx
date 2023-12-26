@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { availableTopics } from '../constants';
 import { useNavigate } from 'react-router-dom';
 import { motion, useAnimate } from 'framer-motion';
+import { AddModal } from '../components/modals';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ const HomePage = () => {
     const handleAnimation = async () => {
         await animate(
             scope.current,
-            {                
+            {
                 rotate: "10deg",
 
             },
@@ -27,7 +28,6 @@ const HomePage = () => {
             scope.current,
             {
                 y: 20,
-
             },
             {
                 duration: 0.3,
@@ -55,9 +55,10 @@ const HomePage = () => {
             );
         }
     };
+    const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <div className="w-full h-[100dvh] md:py-10 py-4 bg-opacity-[15%] bg-stone-950 ">
-            <div className="container mx-auto lg:p-16 p-10 ">
+            <div className="container mx-auto md:p-16 sm:p-10 p-4">
                 <div className="flex justify-center items-center">
                     <span className="lg:text-6xl text-3xl text-[#4992ea]  font-bold">French </span>
                     <span className="lg:text-6xl text-3xl text-[#FFFFFF]  font-bold">Language </span>
@@ -70,7 +71,7 @@ const HomePage = () => {
                 <div className="flex justify-center items-center pt-8 flex-col">
                     <h1 style={{
                         textShadow: '0px 0px 10px #000000',
-                    }} className="lg:text-4xl text-1xl text-white
+                    }} className="md:text-4xl text-1xl text-white
                     ">Select number of questions</h1>
                     <div className="my-4 flex justify-center">
                         <button className="border w-14 border-black px-4 py-1 text-4xl rounded-lg mx-2 shadow-lg bg-[#002654] hover:bg-[#132336] disabled:opacity-50 text-white"
@@ -108,7 +109,7 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="flex justify-center items-center pt-4">
-                    <h1 className="lg:text-4xl text-1xl text-white"
+                    <h1 className="md:text-4xl text-1xl text-white"
                         style={{
                             textShadow: '0px 0px 10px #000000',
                         }}
@@ -119,9 +120,13 @@ const HomePage = () => {
                         <div key={topic.id} className="m-2">
                             <label
                                 htmlFor={`topic-${topic.id}`}
-                                className="flex items-center cursor-pointer lg:text-lg text-md"
+                                className="flex items-center cursor-pointer md:text-lg text-md"
                             >
-                                <span className="mr-2">{topic.name}</span>
+                                <span style={
+                                    {
+                                        textShadow: '5px 5px 10px #000000',
+                                    }
+                                } className="mr-2 text-white md:text-lg text-md font-medium">{topic.name}</span>
                                 <input
                                     type="checkbox"
                                     id={`topic-${topic.id}`}
@@ -151,7 +156,12 @@ const HomePage = () => {
                             htmlFor="selectAll"
                             className="flex items-center cursor-pointer"
                         >
-                            <span className="mr-2">All</span>
+                            <span style={
+                                {
+                                    textShadow: '5px 5px 10px #000000',
+                                }
+                            } className="mr-2 text-white md:text-lg text-md font-medium"
+                            >All</span>
                             <input
                                 type="checkbox"
                                 id="selectAll"
@@ -182,7 +192,7 @@ const HomePage = () => {
                 </div>
                 <div className="flex justify-center items-center mt-10 gap-5 flex-col">
                     <button
-                        className="lg:text-4xl text-1xl text-white px-10 py-2 rounded-lg shadow-lg bg-[#000454] hover:bg-[#132336]  hover:scale-105 transform transition-all duration-300 h-14"
+                        className="md:text-4xl text-1xl text-white px-10 py-2 rounded-lg shadow-lg bg-[#000454] hover:bg-[#132336]  hover:scale-105 transform transition-all duration-300 h-14"
                         onClick={() => {
                             if (selectedTopicsIds.length === 0) {
                                 alert('Please select at least one topic of minimum 5 words');
@@ -193,16 +203,21 @@ const HomePage = () => {
                     >
                         Start
                     </button>
-                    <button className="lg:text-xl text-lg px-4 py-2 rounded-lg text-white
+                    <button className="md:text-xl text-lg px-4 py-2 rounded-lg text-white
                          bg-opacity-90 hover:bg-opacity-100
                         hover:scale-95 transform transition-all duration-300
-                    ">
+                    "
+                        onClick={() => {
+                            setIsModalOpen(true);
+                        }}
+                    >
                         + Add new word
                     </button>
 
 
                 </div>
             </div >
+            {isModalOpen && <AddModal  setIsOpen={setIsModalOpen} />}
         </div >
 
     );

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import wordPairsData from '../wordPairs.json';
 import styles from '../styles';
 import useTimeout from '../hooks/useTimeout';
 import MultipleChoice from '../components/multipleChoice';
@@ -17,7 +16,13 @@ import { useNavigate } from 'react-router-dom';
 
 
 const GamePage = () => {
+
     const navigate = useNavigate();
+    const wordPairsRaw = localStorage.getItem('wordList');
+    const wordPairsData = wordPairsRaw ? JSON.parse(wordPairsRaw) as wordCard[] : [];
+    if (!wordPairsData || wordPairsData === null) {
+        navigate('/');
+    }
     const isEnoughWords = useRef<boolean>(true);
     const gameStatisticsRef = useRef<gameStatistics>({
         totalQuestions: 0,
