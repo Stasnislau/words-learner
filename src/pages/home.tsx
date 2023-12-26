@@ -1,12 +1,43 @@
-import React, { useState } from 'react';
-import styles from '../styles';
+import React, { useState, useEffect } from 'react';
 import { availableTopics } from '../constants';
 import { useNavigate } from 'react-router-dom';
+import { motion, useAnimate } from 'framer-motion';
 
 const HomePage = () => {
     const navigate = useNavigate();
     const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
     const [selectedTopicsIds, setSelectedTopicsIds] = useState<number[]>([]);
+    const [scope, animate] = useAnimate();
+
+    const handleAnimation = async () => {
+        await animate(
+            scope.current,
+            {                
+                rotate: "10deg",
+
+            },
+            {
+                duration: 0.3,
+                repeat: 10,
+                ease: "easeInOut",
+                repeatType: "reverse",
+            }
+        )
+        await animate(
+            scope.current,
+            {
+                y: 20,
+
+            },
+            {
+                duration: 0.3,
+            }
+        )
+    };
+
+    useEffect(() => {
+        handleAnimation();
+    }, []);
 
     const handleTopicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const topicId = Number(event.target.value);
@@ -25,16 +56,21 @@ const HomePage = () => {
         }
     };
     return (
-        <div className="w-full h-screen py-20 bg-opacity-[15%] bg-stone-950 ">
+        <div className="w-full h-[100dvh] md:py-10 py-4 bg-opacity-[15%] bg-stone-950 ">
             <div className="container mx-auto lg:p-16 p-10 ">
                 <div className="flex justify-center items-center">
-                    <span className="lg:text-6xl text-3xl text-[#4992ea]  font-bold">French &nbsp;</span>
-                    <span className="lg:text-6xl text-3xl text-[#FFFFFF]  font-bold">Language &nbsp;</span>
-                    <span className="lg:text-6xl text-3xl text-[#ED2939]  font-bold">Quiz</span>
+                    <span className="lg:text-6xl text-3xl text-[#4992ea]  font-bold">French </span>
+                    <span className="lg:text-6xl text-3xl text-[#FFFFFF]  font-bold">Language </span>
+                    <motion.span
+                        ref={scope}
+
+                        className="lg:text-6xl text-3xl text-[#ED2939]  font-bold">Quiz</motion.span>
                 </div>
 
-                <div className="flex justify-center items-center pt-4 flex-col">
-                    <h1 className="lg:text-4xl text-1xl text-white
+                <div className="flex justify-center items-center pt-8 flex-col">
+                    <h1 style={{
+                        textShadow: '0px 0px 10px #000000',
+                    }} className="lg:text-4xl text-1xl text-white
                     ">Select number of questions</h1>
                     <div className="my-4 flex justify-center">
                         <button className="border w-14 border-black px-4 py-1 text-4xl rounded-lg mx-2 shadow-lg bg-[#002654] hover:bg-[#132336] disabled:opacity-50 text-white"
@@ -144,16 +180,9 @@ const HomePage = () => {
 
                     </div>
                 </div>
-                <div className="flex justify-center items-center mt-10 flex-row gap-5">
-                    <button className="lg:text-2xl text-lg  px-4 py-2 rounded-lg shadow-lg border font-bold text-[#ED2939]  hover:border-[#ED2939] h-14
-                        bg-stone-950 bg-opacity-30
-                        hover:scale-105 transform transition-all duration-300
-                    ">
-                        Add new word
-                    </button>
-
+                <div className="flex justify-center items-center mt-10 gap-5 flex-col">
                     <button
-                        className="lg:text-4xl text-1xl text-white px-10 py-2 rounded-lg shadow-lg bg-[#002654] hover:bg-[#132336]  hover:scale-105 transform transition-all duration-300 h-14"
+                        className="lg:text-4xl text-1xl text-white px-10 py-2 rounded-lg shadow-lg bg-[#000454] hover:bg-[#132336]  hover:scale-105 transform transition-all duration-300 h-14"
                         onClick={() => {
                             if (selectedTopicsIds.length === 0) {
                                 alert('Please select at least one topic of minimum 5 words');
@@ -164,6 +193,14 @@ const HomePage = () => {
                     >
                         Start
                     </button>
+                    <button className="lg:text-xl text-lg px-4 py-2 rounded-lg text-white
+                         bg-opacity-90 hover:bg-opacity-100
+                        hover:scale-95 transform transition-all duration-300
+                    ">
+                        + Add new word
+                    </button>
+
+
                 </div>
             </div >
         </div >
