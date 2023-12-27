@@ -53,4 +53,6 @@ export interface statisticsWord {
 export interface chartItem {
   topic: topic;
   correct: number;
+  incorrect: number;
+  skipped: number;
 }

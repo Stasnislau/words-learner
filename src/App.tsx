@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { HomePage, GamePage } from "./pages"
-import { useEffect } from "react"
+import { useEffect} from "react"
 import wordPairs from "./wordPairs.json"
 
 const App = () => {
