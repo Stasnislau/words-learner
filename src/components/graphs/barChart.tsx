@@ -10,8 +10,14 @@ const BarChart = ({ items }: {
     items: chartItem[];
 }
 ) => {
+    const unfilteredTopicNames = items.map((item) => {
+        return item.topic.name;
+    });
+    const topicSet = new Set(unfilteredTopicNames);
+    const labels = Array.from(topicSet);
+    console.log(labels)
     return (
-        <div>
+        <div className="h-full">
             <Bar
                 width={100}
                 height={100}
@@ -23,7 +29,6 @@ const BarChart = ({ items }: {
                     },
                     responsive: true,
                     interaction: {
-                        mode: 'index',
                         intersect: false,
                     },
                     maintainAspectRatio: false,
@@ -37,40 +42,34 @@ const BarChart = ({ items }: {
                             }
                         }
                     }
-
                 }}
                 data={{
-                    labels: items.map((item) => {
-                        return item.topic.name;
-                    }),
+                    labels: labels,
                     datasets: [{
+                        
                         label: 'Correct',
                         data: items.map((item) => {
                             return item.correct;
                         }),
-                        backgroundColor: ['rgba(75, 192, 192, 0.2)'],
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
+                        backgroundColor: '#4CAF50',
+                        stack: 'Stack 0'
                     },
                     {
                         label: 'Incorrect',
                         data: items.map((item) => {
                             return item.incorrect;
                         }),
-                        backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
+                        backgroundColor: '#F44336',
+                        stack: 'Stack 0'
                     },
                     {
                         label: 'Skipped',
                         data: items.map((item) => {
                             return item.skipped;
                         }),
-                        backgroundColor: ['rgba(255, 206, 86, 0.2)'],
-                        borderColor: 'rgba(255, 206, 86, 1)',
-                        borderWidth: 1
-                    }
-                    ]
+                        backgroundColor: '#D3D3D3',
+                        stack: 'Stack 0'
+                    }]
                 }}
             />
         </div>

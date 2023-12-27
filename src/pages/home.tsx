@@ -7,7 +7,7 @@ import { AddModal } from '../components/modals';
 const HomePage = () => {
     const navigate = useNavigate();
     const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
-    const [selectedTopicsIds, setSelectedTopicsIds] = useState<number[]>([]);
+    const [selectedTopicsIds, setSelectedTopicsIds] = useState<number[]>(availableTopics.map((topic) => topic.id));
     const [scope, animate] = useAnimate();
 
     const handleAnimation = async () => {
@@ -64,7 +64,6 @@ const HomePage = () => {
                     <span className="lg:text-6xl text-3xl text-[#FFFFFF]  font-bold">Language </span>
                     <motion.span
                         ref={scope}
-
                         className="lg:text-6xl text-3xl text-[#ED2939]  font-bold">Quiz</motion.span>
                 </div>
 
@@ -217,7 +216,7 @@ const HomePage = () => {
 
                 </div>
             </div >
-            {isModalOpen && <AddModal  setIsOpen={setIsModalOpen} />}
+            {isModalOpen && <AddModal setIsOpen={setIsModalOpen} />}
         </div >
 
     );

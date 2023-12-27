@@ -13,6 +13,35 @@ import { useParams, useLocation } from 'react-router-dom';
 import { wordCard, gameStatistics } from '../types';
 import { useNavigate } from 'react-router-dom';
 
+const mock = {
+    correctAnswers: 14,
+    incorrectAnswers: 3,
+    skippedAnswers: 3,
+    totalQuestions: 20,
+    totalTime: 45,
+    words: [
+        { success: "incorrect" as const, time: 1, topic: { id: 2, name: '2 regular' }, translation: "Zastanawiać się", word: "Réfléchir" },
+        { success: "skipped" as const, time: 1, topic: { id: 3, name: '1 irregular' }, translation: "Przymierzać (ubranie)", word: "Essayer" },
+        { success: "correct" as const, time: 4, topic: { id: 3, name: '1 irregular' }, translation: "Przymierzać (ubranie)", word: "Essayer" },
+        { success: "correct" as const, time: 4, topic: { id: 5, name: '3 irregular' }, translation: "móc", word: "pouvoir" },
+        { success: "correct" as const, time: 2, topic: { id: 5, name: '3 irregular' }, translation: "wiedzieć", word: "savoir" },
+        { success: "skipped" as const, time: 1, topic: { id: 5, name: '3 irregular' }, translation: "przychodzić", word: "venir" },
+        { success: "correct" as const, time: 3, topic: { id: 5, name: '3 irregular' }, translation: "mówić", word: "dire" },
+        { success: "correct" as const, time: 2, topic: { id: 3, name: '1 irregular' }, translation: "Zmieniać", word: "Changer" },
+        { success: "incorrect" as const, time: 2, topic: { id: 3, name: '1 irregular' }, translation: "Przymierzać (ubranie)", word: "Essayer" },
+        { success: "correct" as const, time: 2, topic: { id: 3, name: '1 irregular' }, translation: "Zaczynać", word: "Commencer" },
+        { success: "correct" as const, time: 2, topic: { id: 5, name: '3 irregular' }, translation: "otrzymywać", word: "recevoir" },
+        { success: "skipped" as const, time: 2, topic: { id: 3, name: '1 irregular' }, translation: "Jeść", word: "Manger" },
+        { success: "incorrect" as const, time: 2, topic: { id: 5, name: '3 irregular' }, translation: "Uczyć się", word: "Apprendre" },
+        { success: "correct" as const, time: 3, topic: { id: 3, name: '1 irregular' }, translation: "Porządkować/układać", word: "Ranger" },
+        { success: "correct" as const, time: 3, topic: { id: 3, name: '1 irregular' }, translation: "Otwierać", word: "Ouvrir" },
+        { success: "correct" as const, time: 2, topic: { id: 4, name: '3 regular' }, translation: "Czekać", word: "Attendre" },
+        { success: "correct" as const, time: 2, topic: { id: 3, name: '1 irregular' }, translation: "Zaczynać", word: "Commencer" },
+        { success: "correct" as const, time: 3, topic: { id: 5, name: '3 irregular' }, translation: "Kłamać", word: "Mentir" },
+        { success: "correct" as const, time: 3, topic: { id: 3, name: '1 irregular' }, translation: "Porządkować/układać", word: "Ranger" },
+        { success: "correct" as const, time: 5, topic: { id: 5, name: '3 irregular' }, translation: "mówić", word: "dire" }
+    ]
+};
 
 
 const GamePage = () => {
@@ -242,23 +271,26 @@ const GamePage = () => {
                     <div className='flex grow p-8 items-center'>
                         <MultipleChoice key={"choice" + key} choices={options} onChoice={onChoice} answer={answer.current} isRevealed={isRevealed} />
                     </div>
-                    {isGameOver && <GameOverModal gameStatistics={gameStatisticsRef.current} onRestart={() => {
-                        setIsGameOver(false);
-                        setCurrentQuestionNumber(1);
-                        setNumberOfCorrectAnswers(0);
-                        gameStatisticsRef.current = {
-                            totalQuestions: 0,
-                            correctAnswers: 0,
-                            skippedAnswers: 0,
-                            incorrectAnswers: 0,
-                            totalTime: 0,
-                            words: []
-                        };
-                        setHasFirstCountdownFinished(false);
-                        setIsRevealed(false);
-                    }} onExit={() => {
-                        navigate('/');
-                    }} />}
+                    {isGameOver && <GameOverModal
+                        gameStatistics={mock}
+                        // gameStatistics={gameStatisticsRef.current} TODO: uncomment this line
+                        onRestart={() => {
+                            setIsGameOver(false);
+                            setCurrentQuestionNumber(1);
+                            setNumberOfCorrectAnswers(0);
+                            gameStatisticsRef.current = {
+                                totalQuestions: 0,
+                                correctAnswers: 0,
+                                skippedAnswers: 0,
+                                incorrectAnswers: 0,
+                                totalTime: 0,
+                                words: []
+                            };
+                            setHasFirstCountdownFinished(false);
+                            setIsRevealed(false);
+                        }} onExit={() => {
+                            navigate('/');
+                        }} />}
                 </div>
             ) : (
 
