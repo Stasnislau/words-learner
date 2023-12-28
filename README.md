@@ -38,10 +38,11 @@ npm run dev
 ## Preview 
 DEMO OF THE PROJECT AVAILABLE HERE https://french-learner.netlify.app/
 
+![demo1](https://github.com/Stasnislau/words-learner/assets/56834401/d5284619-8889-4754-8ce7-5e087e27ab91)
+![demo2](https://github.com/Stasnislau/words-learner/assets/56834401/d9cffdc3-cea2-4e63-9cfe-3fb402247886)
+![demo3](https://github.com/Stasnislau/words-learner/assets/56834401/6634ab13-c76c-4c8a-a9a2-8c1f3ab3dc0d)
 
-![Screenshot 2023-12-28 140914](https://github.com/Stasnislau/words-learner/assets/56834401/88c41788-1914-467b-9efa-dd89b66b406e)
-![Screenshot 2023-12-28 234920](https://github.com/Stasnislau/words-learner/assets/56834401/4e80f993-8afd-4c85-9431-9d2c5210e8cf)
-![Screenshot 2023-12-28 235154](https://github.com/Stasnislau/words-learner/assets/56834401/8ca065b1-0785-4339-b47a-8c5f2869b984)
+
 
 
 
