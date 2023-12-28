@@ -12,6 +12,8 @@ import choiceMade from './../assets/sounds/choiceMade.mp3';
 import { useParams, useLocation } from 'react-router-dom';
 import { wordCard, gameStatistics } from '../types';
 import { useNavigate } from 'react-router-dom';
+import Background from "../assets/images/background.jpg";
+import BackgroundGame from "../assets/images/backgroundGame.jpg";
 
 
 
@@ -106,10 +108,10 @@ const GamePage = () => {
 
     useEffect(() => {
         if (window.location.href.includes('game')) {
-            document.body.style.backgroundImage = "url(../src/assets/images/backgroundGame.jpg)";
+            document.body.style.backgroundImage = `url(${BackgroundGame})`;
         }
         return () => {
-            document.body.style.backgroundImage = "url(../src/assets/images/background.jpg)";
+            document.body.style.backgroundImage =  `url(${Background})`;
         }
     }, [])
 
