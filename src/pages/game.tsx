@@ -78,7 +78,7 @@ const GamePage = () => {
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
     const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
     const [musicSource, setMusicSource] = useState<string>('game');
-    const [time, setTimer] = useTimeout(TIME_FOR_QUESTIONS, false, INITIAL_DELAY, () => {
+    const [time, setTimer, restartTimer] = useTimeout(TIME_FOR_QUESTIONS, false, INITIAL_DELAY, () => {
         handleSkip();
     });
     const [isRevealed, setIsRevealed] = useState<boolean>(false);
@@ -111,7 +111,7 @@ const GamePage = () => {
             document.body.style.backgroundImage = `url(${BackgroundGame})`;
         }
         return () => {
-            document.body.style.backgroundImage =  `url(${Background})`;
+            document.body.style.backgroundImage = `url(${Background})`;
         }
     }, [])
 
@@ -136,6 +136,7 @@ const GamePage = () => {
         gameStatisticsRef.current.totalQuestions++;
         if (status === "skipped") {
             gameStatisticsRef.current.skippedAnswers++;
+            gameStatisticsRef.current.totalTime += (TIME_FOR_QUESTIONS - time)
         }
         if (status === "correct") {
             gameStatisticsRef.current.correctAnswers++;
@@ -253,6 +254,7 @@ const GamePage = () => {
                             };
                             setHasFirstCountdownFinished(false);
                             setIsRevealed(false);
+                            restartTimer();
                         }} onExit={() => {
                             navigate('/');
                         }} />}

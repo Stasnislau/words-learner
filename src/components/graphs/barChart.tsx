@@ -10,8 +10,6 @@ const BarChart = ({ items }: {
     items: chartItem[];
 }
 ) => {
-    console.log(items);
-
     return (
         <div className="h-full">
             <Bar

@@ -4,13 +4,18 @@ const useTimeout = (
   initialTime: number,
   startImmediately: boolean,
   delay: number,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  callBack: (props?: any) => any
+  callBack: (props?: unknown) => void
 ) => {
   const [time, setTime] = useState(initialTime);
   const hasDelayFinished = useRef(false);
-  const isRunning = useRef(startImmediately);
   const callbackRef = useRef(callBack);
+  const [isRunning, setIsRunning] = useState(startImmediately);
+  const [isTimeSet, setIsTimeSet] = useState(false);
+  const restartWithDelay = () => {
+    setTime(initialTime);
+    setIsRunning(true);
+    hasDelayFinished.current = false;
+  };
 
   // the delay should be applied only once, when the component mounts
   // so we need to check if the delay has already finished
@@ -25,37 +30,36 @@ const useTimeout = (
   }, [callBack]);
 
   useEffect(() => {
-    if (delay > 0 && isRunning.current) {
+    if (delay > 0 && isRunning && !hasDelayFinished.current) {
       const delayTimer = setTimeout(() => {
         hasDelayFinished.current = true;
         setTime(initialTime);
-        isRunning.current = true;
+        setIsTimeSet(true);
       }, delay);
       return () => clearTimeout(delayTimer);
     }
     return () => {};
-  }, [delay, initialTime, startImmediately]);
+  }, [delay, initialTime, startImmediately, isRunning]);
 
   useEffect(() => {
-    if (isRunning.current) {
+    if (isRunning) {
+      setIsTimeSet(true);
       setTime(initialTime);
     }
-  }, [isRunning.current]);
+  }, [isRunning]);
 
   useEffect(() => {
-    if (time === 0 && isRunning.current) {
+    if (time === 0 && isRunning && isTimeSet) {
       callbackRef.current(); // call the callback
-      isRunning.current = false;
+      setIsRunning(false);
+      setIsTimeSet(false);
       return;
     }
-    if (!isRunning.current) return;
+    if (!isRunning) return;
     const timer = setTimeout(() => setTime(time - 1), calculateTimer());
-    return () => clearTimeout(timer); // clear the timeout when the component unmounts
-  }, [time, hasDelayFinished.current]);
-  const setIsRunning = (value: boolean) => {
-    isRunning.current = value;
-  };
-  return [time, setIsRunning] as const;
+    return () => clearTimeout(timer); // This will clear the timer when the component unmounts or when `isRunning` or `time` changes
+  }, [time, isRunning, isTimeSet]);
+  return [time, setIsRunning, restartWithDelay] as const;
 };
 
 export default useTimeout;
