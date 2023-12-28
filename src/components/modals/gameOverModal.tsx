@@ -1,5 +1,5 @@
 import { gameOverText } from "../../constants";
-import { gameStatistics } from "../../types";
+import { gameStatistics, topic } from "../../types";
 import BarChart from "../graphs/barChart";
 
 
@@ -10,11 +10,17 @@ interface gameOverProps {
 }
 const GameOverModal = ({ gameStatistics, onRestart, onExit }: gameOverProps) => {
     const { totalQuestions, correctAnswers, skippedAnswers, incorrectAnswers, totalTime, words } = gameStatistics;
-    const topics = words.map((word) => {
+    const topics = words.map((word) => { 
         return word.topic;
     });
-    const topicSet = new Set(topics);
-    const topicArray = Array.from(topicSet);
+    const topicSet = new Set(topics.map((topic) => topic.id));
+    const topicArrayUndef = [...topicSet].map((id) => {
+        return topics.find((topic) => topic.id === id);
+    });
+    const topicArray = topicArrayUndef.filter((topic) => topic !== undefined) as topic[];
+
+
+    
     const items = topicArray.map((topic) => {
         const correct = words.filter((word) => {
             return word.topic.id === topic.id && word.success === "correct";
@@ -44,7 +50,6 @@ const GameOverModal = ({ gameStatistics, onRestart, onExit }: gameOverProps) => 
                 <td>{word.word}</td>
                 <td>{word.translation}</td>
                 <td>
-                    {/* use icons */}
                     {word.success === "correct" && <span className="text-green-500">✅</span>}
                     {word.success === "incorrect" && <span className="text-red-500">❌</span>}
                     {word.success === "skipped" && <span className="text-yellow-500">

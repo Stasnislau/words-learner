@@ -10,12 +10,8 @@ const BarChart = ({ items }: {
     items: chartItem[];
 }
 ) => {
-    const unfilteredTopicNames = items.map((item) => {
-        return item.topic.name;
-    });
-    const topicSet = new Set(unfilteredTopicNames);
-    const labels = Array.from(topicSet);
-    console.log(labels)
+    console.log(items);
+
     return (
         <div className="h-full">
             <Bar
@@ -44,7 +40,9 @@ const BarChart = ({ items }: {
                     }
                 }}
                 data={{
-                    labels: labels,
+                    labels: items.map((item) => {
+                        return item.topic.name;
+                    }),
                     datasets: [{
                         
                         label: 'Correct',
