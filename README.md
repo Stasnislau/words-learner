@@ -1,30 +1,46 @@
-# React + TypeScript + Vite
+# French Learner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a web service for learning French words. You choose a group of words or maybe all of them to train today and the number of questions you want to be asked. Then you get a visually appealing quiz with multiple choice questions and extremely informative statistics at the end of your quiz. This service helped many people pass the French language course at the University. 
 
-Currently, two official plugins are available:
+## Technologies used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- TypeScript
+- Tailwind
+- Framer-motion
+- Chart.js
 
-## Expanding the ESLint configuration
+## Getting started
+To get started with this project, you need to follow these steps:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+1. Clone the repository
+```bash
+git clone https://github.com/Stasnislau/words-learner.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Install dependencies 
+```bash
+npm install
+```
+3. Run the development server:
+```bash
+npm run all
+```
+3. Open http://localhost:3000 with your browser to see the result.
+
+## Features
+- Built-in vocabulary which could be expanded
+- Engaging music during the quiz
+- User-friendly interface
+- Multiple Choice Quiz
+- Informative statistics of the quiz
+
+## Preview 
+DEMO OF THE PROJECT AVAILABLE HERE https://french-learner.netlify.app/
+
+
+![Screenshot 2023-12-28 140914](https://github.com/Stasnislau/words-learner/assets/56834401/88c41788-1914-467b-9efa-dd89b66b406e)
+
+
+
+
