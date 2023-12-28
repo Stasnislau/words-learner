@@ -101,7 +101,7 @@ const GameOverModal = ({ gameStatistics, onRestart, onExit }: gameOverProps) => 
                                 </tr>
                             </thead>
                             <tbody className="text-gray-700">
-                                {tableRows.map((row, index) => (
+                                {tableRows.map((row) => (
                                     row
                                 ))}
                             </tbody>

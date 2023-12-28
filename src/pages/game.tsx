@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../styles';
 import useTimeout from '../hooks/useTimeout';
 import MultipleChoice from '../components/multipleChoice';
@@ -89,14 +89,6 @@ const GamePage = () => {
     const [hasFirstCountdownFinished, setHasFirstCountdownFinished] = useState<boolean>(false);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const [isMuted, setIsMuted] = useState<boolean>(true);
-    const gameStatistics = useRef<gameStatistics>({
-        totalQuestions: 0,
-        correctAnswers: 0,
-        skippedAnswers: 0,
-        incorrectAnswers: 0,
-        totalTime: 0,
-        words: []
-    });
 
     useEffect(() => {
         const muteButton = document.getElementById('mute-button-click');
