@@ -13,35 +13,6 @@ import { useParams, useLocation } from 'react-router-dom';
 import { wordCard, gameStatistics } from '../types';
 import { useNavigate } from 'react-router-dom';
 
-// const mock = {
-//     correctAnswers: 14,
-//     incorrectAnswers: 3,
-//     skippedAnswers: 3,
-//     totalQuestions: 20,
-//     totalTime: 45,
-//     words: [
-//         { success: "incorrect" as const, time: 1, topic: { id: 2, name: '2 regular' }, translation: "Zastanawiać się", word: "Réfléchir" },
-//         { success: "skipped" as const, time: 1, topic: { id: 3, name: '1 irregular' }, translation: "Przymierzać (ubranie)", word: "Essayer" },
-//         { success: "correct" as const, time: 4, topic: { id: 3, name: '1 irregular' }, translation: "Przymierzać (ubranie)", word: "Essayer" },
-//         { success: "correct" as const, time: 4, topic: { id: 5, name: '3 irregular' }, translation: "móc", word: "pouvoir" },
-//         { success: "correct" as const, time: 2, topic: { id: 5, name: '3 irregular' }, translation: "wiedzieć", word: "savoir" },
-//         { success: "skipped" as const, time: 1, topic: { id: 5, name: '3 irregular' }, translation: "przychodzić", word: "venir" },
-//         { success: "correct" as const, time: 3, topic: { id: 5, name: '3 irregular' }, translation: "mówić", word: "dire" },
-//         { success: "correct" as const, time: 2, topic: { id: 3, name: '1 irregular' }, translation: "Zmieniać", word: "Changer" },
-//         { success: "incorrect" as const, time: 2, topic: { id: 3, name: '1 irregular' }, translation: "Przymierzać (ubranie)", word: "Essayer" },
-//         { success: "correct" as const, time: 2, topic: { id: 3, name: '1 irregular' }, translation: "Zaczynać", word: "Commencer" },
-//         { success: "correct" as const, time: 2, topic: { id: 5, name: '3 irregular' }, translation: "otrzymywać", word: "recevoir" },
-//         { success: "skipped" as const, time: 2, topic: { id: 3, name: '1 irregular' }, translation: "Jeść", word: "Manger" },
-//         { success: "incorrect" as const, time: 2, topic: { id: 5, name: '3 irregular' }, translation: "Uczyć się", word: "Apprendre" },
-//         { success: "correct" as const, time: 3, topic: { id: 3, name: '1 irregular' }, translation: "Porządkować/układać", word: "Ranger" },
-//         { success: "correct" as const, time: 3, topic: { id: 3, name: '1 irregular' }, translation: "Otwierać", word: "Ouvrir" },
-//         { success: "correct" as const, time: 2, topic: { id: 4, name: '3 regular' }, translation: "Czekać", word: "Attendre" },
-//         { success: "correct" as const, time: 2, topic: { id: 3, name: '1 irregular' }, translation: "Zaczynać", word: "Commencer" },
-//         { success: "correct" as const, time: 3, topic: { id: 5, name: '3 irregular' }, translation: "Kłamać", word: "Mentir" },
-//         { success: "correct" as const, time: 3, topic: { id: 3, name: '1 irregular' }, translation: "Porządkować/układać", word: "Ranger" },
-//         { success: "correct" as const, time: 5, topic: { id: 5, name: '3 irregular' }, translation: "mówić", word: "dire" }
-//     ]
-// };
 
 
 const GamePage = () => {
@@ -78,7 +49,7 @@ const GamePage = () => {
             isRepeatable: false
         }
     ]
-    const [musicSource, setMusicSource] = useState<string>('game');
+
     const { questions } = useParams<{ questions: string }>();
     const numberOfQuestions = Number(questions);
 
@@ -104,6 +75,7 @@ const GamePage = () => {
 
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
     const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
+    const [musicSource, setMusicSource] = useState<string>('game');
     const [time, setTimer] = useTimeout(TIME_FOR_QUESTIONS, false, INITIAL_DELAY, () => {
         handleSkip();
     });
@@ -272,7 +244,6 @@ const GamePage = () => {
                         <MultipleChoice key={"choice" + key} choices={options} onChoice={onChoice} answer={answer.current} isRevealed={isRevealed} />
                     </div>
                     {isGameOver && <GameOverModal
-                        // gameStatistics={mock}
                         gameStatistics={gameStatisticsRef.current}
                         onRestart={() => {
                             setIsGameOver(false);
