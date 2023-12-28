@@ -24,22 +24,25 @@ npm install
 ```
 3. Run the development server:
 ```bash
-npm run all
+npm run dev
 ```
 3. Open http://localhost:3000 with your browser to see the result.
 
 ## Features
-- Built-in vocabulary which could be expanded
+- Built-in vocabulary which can be expanded
 - Engaging music during the quiz
 - User-friendly interface
 - Multiple Choice Quiz
-- Informative statistics of the quiz
+- Informative statistics on how well the quiz went
 
 ## Preview 
 DEMO OF THE PROJECT AVAILABLE HERE https://french-learner.netlify.app/
 
 
 ![Screenshot 2023-12-28 140914](https://github.com/Stasnislau/words-learner/assets/56834401/88c41788-1914-467b-9efa-dd89b66b406e)
+![Screenshot 2023-12-28 234920](https://github.com/Stasnislau/words-learner/assets/56834401/4e80f993-8afd-4c85-9431-9d2c5210e8cf)
+![Screenshot 2023-12-28 235154](https://github.com/Stasnislau/words-learner/assets/56834401/8ca065b1-0785-4339-b47a-8c5f2869b984)
+
 
 
 
