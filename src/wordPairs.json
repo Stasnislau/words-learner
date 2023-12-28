@@ -8,6 +8,62 @@
         }
     },
     {
+        "word": "Rendre",
+        "translation": "Zwrócić",
+        "topic": {
+            "id": 1,
+            "name": "1 regular"
+        }
+    },
+    {
+        "word": "Habiter",
+        "translation": "Mieszkać",
+        "topic": {
+            "id": 1,
+            "name": "1 regular"
+        }
+    },
+    {
+        "word": "Aimer",
+        "translation": "Lubić",
+        "topic": {
+            "id": 1,
+            "name": "1 regular"
+        }
+    },
+    {
+        "word": "Étudier",
+        "translation": "Studiować",
+        "topic": {
+            "id": 1,
+            "name": "1 regular"
+        }
+    },
+    {
+        "word": "Parler",
+        "translation": "Rozmawiać",
+        "topic": {
+            "id": 1,
+            "name": "1 regular"
+        }
+    },
+    {
+        "word": "Ecouter",
+        "translation": "Słuchać",
+        "topic": {
+            "id": 1,
+            "name": "1 regular"
+        }
+    },
+    {
+        "word": "Regarder",
+        "translation": "Patrzeć",
+        "topic": {
+            "id": 1,
+            "name": "1 regular"
+        }
+    },
+    {
         "word": "Finir",
         "translation": "Kończyć",
         "topic": {
@@ -34,6 +90,22 @@
     {
         "word": "Obéir",
         "translation": "Słuchać się",
+        "topic": {
+            "id": 2,
+            "name": "2 regular"
+        }
+    },
+    {
+        "word": "Réussir",
+        "translation": "Udać się",
+        "topic": {
+            "id": 2,
+            "name": "2 regular"
+        }
+    },
+    {
+        "word": "Remplir",
+        "translation": "Wypełniać",
         "topic": {
             "id": 2,
             "name": "2 regular"
@@ -160,8 +232,8 @@
         }
     },
     {
-        "word": "détendre",
-        "translation": "odprężać",
+        "word": "Détendre",
+        "translation": "Odprężać",
         "topic": {
             "id": 4,
             "name": "3 regular"
@@ -170,6 +242,30 @@
     {
         "word": "Attendre",
         "translation": "Czekać",
+        "topic": {
+            "id": 4,
+            "name": "3 regular"
+        }
+    },
+    {
+        "word": "Entendre",
+        "translation": "Słyszeć",
+        "topic": {
+            "id": 4,
+            "name": "3 regular"
+        }
+    },
+    {
+        "word": "Perdre",
+        "translation": "Tracić",
+        "topic": {
+            "id": 4,
+            "name": "3 regular"
+        }
+    },
+    {
+        "word": "Répondre",
+        "translation": "Odpowiadać",
         "topic": {
             "id": 4,
             "name": "3 regular"
@@ -264,120 +360,120 @@
         }
     },
     {
-        "word": "faire",
-        "translation": "robić",
+        "word": "Faire",
+        "translation": "Robić",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "dire",
-        "translation": "mówić",
+        "word": "Dire",
+        "translation": "Mówić",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "boire",
-        "translation": "pić",
+        "word": "Boire",
+        "translation": "Pić",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "devoir",
-        "translation": "musieć",
+        "word": "Devoir",
+        "translation": "Musieć",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "venir",
-        "translation": "przychodzić",
+        "word": "Venir",
+        "translation": "Przychodzić",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "tenir",
-        "translation": "trzymać",
+        "word": "Tenir",
+        "translation": "Trzymać",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "voir",
-        "translation": "widzieć",
+        "word": "Voir",
+        "translation": "Widzieć",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "pouvoir",
-        "translation": "móc",
+        "word": "Pouvoir",
+        "translation": "Móc",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "savoir",
-        "translation": "wiedzieć",
+        "word": "Savoir",
+        "translation": "Wiedzieć",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "recevoir",
-        "translation": "otrzymywać",
+        "word": "Recevoir",
+        "translation": "Otrzymywać",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "lire",
-        "translation": "czytać",
+        "word": "Lire",
+        "translation": "Czytać",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "écrire",
-        "translation": "pisać",
+        "word": "Écrire",
+        "translation": "Pisać",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "connaître",
-        "translation": "znać",
+        "word": "Connaître",
+        "translation": "Znać",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "vouloir",
-        "translation": "chcieć",
+        "word": "Vouloir",
+        "translation": "Chcieć",
         "topic": {
             "id": 5,
             "name": "3 irregular"
         }
     },
     {
-        "word": "devenir",
-        "translation": "stawać się",
+        "word": "Devenir",
+        "translation": "Stawać się",
         "topic": {
             "id": 5,
             "name": "3 irregular"
