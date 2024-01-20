@@ -10,7 +10,7 @@ import gameMusic from './../assets/sounds/game.wav';
 import nextQuestion from './../assets/sounds/nextQuestion.mp3';
 import choiceMade from './../assets/sounds/choiceMade.mp3';
 import { useParams, useLocation } from 'react-router-dom';
-import { wordCard, gameStatistics } from '../types';
+import { wordCard, gameStatistics, wordCardExtended } from '../types';
 import { useNavigate } from 'react-router-dom';
 import Background from "../assets/images/background.jpg";
 import BackgroundGame from "../assets/images/backgroundGame.jpg";
@@ -18,10 +18,9 @@ import BackgroundGame from "../assets/images/backgroundGame.jpg";
 
 
 const GamePage = () => {
-
     const navigate = useNavigate();
     const wordPairsRaw = localStorage.getItem('wordList');
-    const wordPairsData = wordPairsRaw ? JSON.parse(wordPairsRaw) as wordCard[] : [];
+    const [wordPairsData] = useState<wordCard[]>(wordPairsRaw ? JSON.parse(wordPairsRaw) as wordCard[] : []);
     if (!wordPairsData || wordPairsData === null) {
         navigate('/');
     }
@@ -57,12 +56,22 @@ const GamePage = () => {
 
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const topicIds = queryParams.get('topics')?.split(',').map(Number) || [];
-    const wordPairs = useRef<wordCard[]>(wordPairsData);
+    const [topicIds] = useState<number[]>(queryParams.get('topics')?.split(',').map(Number) || []);
+    const wordPairs = useRef<wordCardExtended[]>(wordPairsData.map((wordPair) => {
+        return {
+            ...wordPair,
+            hasBeenAnswered: false
+        }
+    }));
 
     useEffect(() => {
         const filteredPairs = wordPairsData.filter((wordPair) => {
             return topicIds.includes(wordPair.topic.id)
+        }).map((wordPair) => {
+            return {
+                ...wordPair,
+                hasBeenAnswered: false
+            }
         });
         if (filteredPairs.length < 5) {
             if (isEnoughWords.current) {
@@ -72,7 +81,7 @@ const GamePage = () => {
             isEnoughWords.current = false;
         }
         wordPairs.current = filteredPairs;
-    }, [topicIds, wordPairsData]);
+    }, [navigate, topicIds, wordPairsData]);
 
 
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState<number>(0);
@@ -119,12 +128,21 @@ const GamePage = () => {
         if (wordPairs.current.length < 5) {
             return
         }
-        const pair = wordPairs.current[Math.floor(Math.random() * (wordPairs.current.length - 1))];
+        let unansweredPairs = wordPairs.current.filter((wordPair) => !wordPair.hasBeenAnswered);
+        if (unansweredPairs.length === 0) {
+            wordPairs.current.forEach((wordPair) => {
+                wordPair.hasBeenAnswered = false;
+            });
+            unansweredPairs = wordPairs.current;
+        }
+        const pair = unansweredPairs[Math.floor(Math.random() * (unansweredPairs.length - 1))];
         question.current = pair.word;
         answer.current = pair.translation;
+        wordPairs.current.find((wordPair) => wordPair.word === pair.word)!.hasBeenAnswered = true;
+        const topicSorted = wordPairs.current.filter((wordPair) => wordPair.topic.id === pair.topic.id);
         const localOptions: string[] = [answer.current];
         while (localOptions.length < 4) {
-            const randomPair = wordPairs.current[Math.floor(Math.random() * (wordPairs.current.length - 1))];
+            const randomPair = topicSorted[Math.floor(Math.random() * (topicSorted.length - 1))];
             if (!localOptions.includes(randomPair.translation)) {
                 localOptions.push(randomPair.translation);
             }

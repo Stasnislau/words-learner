@@ -42,12 +42,9 @@ export interface gameStatistics {
   words: statisticsWord[];
 }
 
-export interface statisticsWord {
-  word: string;
-  translation: string;
+export interface statisticsWord extends wordCard {
   success: "correct" | "incorrect" | "skipped";
   time: number;
-  topic: topic;
 }
 
 export interface chartItem {
@@ -55,4 +52,8 @@ export interface chartItem {
   correct: number;
   incorrect: number;
   skipped: number;
+}
+
+export interface wordCardExtended extends wordCard {
+  hasBeenAnswered: boolean;
 }
