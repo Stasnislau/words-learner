@@ -592,6 +592,126 @@
         }
     },
     {
+        "word": "dernier",
+        "translation": "ostatni",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "prochain",
+        "translation": "następny",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Huile",
+        "translation": "Olej",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    { 
+        "word": "Eau",
+        "translation": "Woda",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Pain",
+        "translation": "Chleb",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Beurre",
+        "translation": "Masło",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Sucre",
+        "translation": "Cukier",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Sel",
+        "translation": "Sól",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Poivre",
+        "translation": "Pieprz",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Farine",
+        "translation": "Mąka",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Lait",
+        "translation": "Mleko",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Oeuf",
+        "translation": "Jajko",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Pomme",
+        "translation": "Jabłko",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Orange",
+        "translation": "Pomarańcza",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Banane",
+        "translation": "Banan",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
         "word": "IL EST INTERDIT DE + infinitif",
         "translation": "Zabrania się",
         "topic": {
@@ -610,14 +730,6 @@
     {
         "word": "ON NE PEUT PAS",
         "translation": "Nie można",
-        "topic": {
-            "id": 7,
-            "name": "Phrases"
-        }
-    },
-    {
-        "word": "Se liver",
-        "translation": "Wstać",
         "topic": {
             "id": 7,
             "name": "Phrases"
@@ -658,6 +770,30 @@
     {
         "word": "Se raser",
         "translation": "Golić się",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "beaucoup de",
+        "translation": "dużo",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "peu de",
+        "translation": "mało",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "un tout petit peu de",
+        "translation": "troszkę",
         "topic": {
             "id": 7,
             "name": "Phrases"
