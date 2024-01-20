@@ -592,16 +592,16 @@
         }
     },
     {
-        "word": "dernier",
-        "translation": "ostatni",
+        "word": "Dernier",
+        "translation": "Ostatni",
         "topic": {
             "id": 6,
             "name": "Nouns"
         }
     },
     {
-        "word": "prochain",
-        "translation": "następny",
+        "word": "Prochain",
+        "translation": "Następny",
         "topic": {
             "id": 6,
             "name": "Nouns"
@@ -776,24 +776,24 @@
         }
     },
     {
-        "word": "beaucoup de",
-        "translation": "dużo",
+        "word": "Beaucoup de",
+        "translation": "Dużo",
         "topic": {
             "id": 7,
             "name": "Phrases"
         }
     },
     {
-        "word": "peu de",
-        "translation": "mało",
+        "word": "Peu de",
+        "translation": "Mało",
         "topic": {
             "id": 7,
             "name": "Phrases"
         }
     },
     {
-        "word": "un tout petit peu de",
-        "translation": "troszkę",
+        "word": "Un tout petit peu de",
+        "translation": "Troszkę",
         "topic": {
             "id": 7,
             "name": "Phrases"
