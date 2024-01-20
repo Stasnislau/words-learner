@@ -22,6 +22,14 @@ export const availableTopics = [
     id: 5,
     name: "3 irregular",
   },
+  {
+    id: 6,
+    name: "Nouns",
+  },
+  {
+    id: 7,
+    name: "Phrases",
+  }
 ];
 export const gameOverText = {
   finish: "You handled it well!",

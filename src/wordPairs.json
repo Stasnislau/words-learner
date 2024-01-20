@@ -478,5 +478,189 @@
             "id": 5,
             "name": "3 irregular"
         }
+    },
+    {
+        "word": "Jamais",
+        "translation": "Nigdy",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Personne",
+        "translation": "Nikt",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Rien",
+        "translation": "Nic",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Achat",
+        "translation": "Zakup",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Près",
+        "translation": "Blisko",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Loin",
+        "translation": "Daleko",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Hier",
+        "translation": "Wczoraj",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Demain",
+        "translation": "Jutro",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Matin",
+        "translation": "Rano",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Soir",
+        "translation": "Wieczór",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Mois",
+        "translation": "Miesiąc",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Année",
+        "translation": "Rok",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Jour",
+        "translation": "Dzień",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "Semaine",
+        "translation": "Tydzień",
+        "topic": {
+            "id": 6,
+            "name": "Nouns"
+        }
+    },
+    {
+        "word": "IL EST INTERDIT DE + infinitif",
+        "translation": "Zabrania się",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "Il N'EST PAS PERMIS DE + infinitif",
+        "translation": "Nie wolno",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "ON NE PEUT PAS",
+        "translation": "Nie można",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "Se liver",
+        "translation": "Wstać",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "Se coucher",
+        "translation": "Kłaść się",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "Se lever",
+        "translation": "Wstawać",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "Se laver",
+        "translation": "Myć się",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "Se maquiller",
+        "translation": "Malować się",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
+    },
+    {
+        "word": "Se raser",
+        "translation": "Golić się",
+        "topic": {
+            "id": 7,
+            "name": "Phrases"
+        }
     }
 ]
